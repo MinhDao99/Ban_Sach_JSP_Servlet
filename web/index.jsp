@@ -43,9 +43,8 @@
 
 
 
-        <%    
-            request.setCharacterEncoding("utf-8");
-                    
+        <%            request.setCharacterEncoding("utf-8");
+
             String md = "";
             if (request.getParameter("module") != null) {
                 md = (String) request.getParameter("module");
@@ -62,17 +61,18 @@
         %>
         <jsp:include page="contact.jsp"></jsp:include>
         <%
-        } else if (md.equalsIgnoreCase("blog")) {
+        } else if (md.equalsIgnoreCase("cart")) {
         %>
-        <jsp:include page="blog.jsp"></jsp:include>
+        <jsp:include page="shopingcart.jsp"></jsp:include>
         <%
-        }else if (md.equalsIgnoreCase("timkiem")) {
+        } else if (md.equalsIgnoreCase("timkiem")) {
         %>
         <jsp:include page="incl/timkiem.jsp"></jsp:include>
         <%
         } else {
         %>
         <jsp:include page="incl/slideProduct.jsp"></jsp:include>
+        <jsp:include page="incl/LatestProduct.jsp"></jsp:include>
 
         <%            }
         %>

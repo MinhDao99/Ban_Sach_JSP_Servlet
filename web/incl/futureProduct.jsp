@@ -19,13 +19,13 @@
             <%
                 int catid = Integer.parseInt(request.getParameter("id"));
                 Vector<ListProduct> dsSP = new Vector<ListProduct>();
-                    tbProduct.LayDuLieu(catid, dsSP);
-                    DecimalFormat formatter = new DecimalFormat("###,###,###");
-                    for (ListProduct p : dsSP) {
-                        String img = "noimage.jpg";
-                        if (p.getHinhAnh() != null && p.getHinhAnh().equals("") == false) {
-                            img = p.getHinhAnh();
-                        }
+                tbProduct.LayDuLieu(catid, dsSP);
+                DecimalFormat formatter = new DecimalFormat("###,###,###");
+                for (ListProduct p : dsSP) {
+                    String img = "noimage.jpg";
+                    if (p.getHinhAnh() != null && p.getHinhAnh().equals("") == false) {
+                        img = p.getHinhAnh();
+                    }
 
             %>
 
@@ -35,12 +35,12 @@
                     <div class="productname"><%=p.getTensp()%></div>
                     <h4 class="price">$<%=formatter.format(Integer.parseInt(p.getGiaSP()))%></h4>
 
-                    <div class="button_group"><button class="button add-cart" type="button">Add To Cart</button><button class="button compare" type="button"> <a href="FixDaTa.jsp?id=<%=p.getId()%>"><i class="fa fa-pencil"></i></button><button class="button wishlist" type="button"><a href="XuLyXoa?id=<%=p.getId()%>"><i class="fa fa-ban"></i></a></</button></div>
+                    <div class="button_group"><button class="button add-cart" type="button"><a href="XuLyCart?id=<%=p.getId()%>">Add To Cart</a></button></div>
                 </div>
             </div>
             <%
-                    }
-                
+                }
+
             %>
         </div>
 

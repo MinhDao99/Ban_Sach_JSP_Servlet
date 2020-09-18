@@ -32,7 +32,7 @@
 
                 %>
                 <div class="products">
-                    <div class="thumbnail">"><img style="height: 200px;width: 100%" src="Uploads/<%=img%>" alt="Product Name"></div>
+                    <div class="thumbnail"><img style="height: 200px;width: 100%" src="Uploads/<%=img%>" alt="Product Name"></div>
 
                 </div>
                 <%

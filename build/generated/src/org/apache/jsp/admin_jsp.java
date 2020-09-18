@@ -3,6 +3,15 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import java.text.DecimalFormat;
+import CSDL.tbProduct;
+import java.util.Vector;
+import model.Product;
+import CSDL.tbProduct;
+import java.util.Vector;
+import model.Product;
+import java.text.DecimalFormat;
+import model.ListProduct;
 import CSDL.tbProduct;
 import java.util.Vector;
 import model.Product;
@@ -13,6 +22,7 @@ import model.ListProduct;
 import CSDL.tbProduct;
 import java.util.Vector;
 import model.Product;
+import model.ListProduct;
 import CSDL.tbProduct;
 import java.util.Vector;
 import model.Product;
@@ -25,12 +35,14 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(5);
+    _jspx_dependants = new java.util.ArrayList<String>(7);
     _jspx_dependants.add("/incl_admin/menu.jsp");
     _jspx_dependants.add("/incl_admin/Admin_main.jsp");
     _jspx_dependants.add("/incl_admin/themloaisanpham.jsp");
     _jspx_dependants.add("/incl_admin/DSSP.jsp");
     _jspx_dependants.add("/incl_admin/themSP.jsp");
+    _jspx_dependants.add("/incl_admin/SuaDuLieuLoaiSP.jsp");
+    _jspx_dependants.add("/incl_admin/SuaDulieuSP.jsp");
   }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -94,14 +106,16 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <li class=\"dropdown user user-menu\">\n");
       out.write("                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n");
       out.write("                                    <img src=\"dist/img/user2-160x160.jpg\" class=\"user-image\" alt=\"User Image\"/>\n");
-      out.write("                                    <span class=\"hidden-xs\">Alexander Pierce</span>\n");
+      out.write("                                    <span class=\"hidden-xs\">");
+      out.print(session.getAttribute("useradmin"));
+      out.write("</span>\n");
       out.write("                                </a>\n");
       out.write("                                <ul class=\"dropdown-menu\">\n");
       out.write("                                    <!-- User image -->\n");
       out.write("                                    <li class=\"user-header\">\n");
       out.write("                                        <img src=\"dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\" />\n");
       out.write("                                        <p>\n");
-      out.write("                                            <a href=\"#\" class=\"btn btn-default btn-flat\">Sign out</a>\n");
+      out.write("                                            <a href=\"#\" class=\"btn btn-default btn-flat\">Sign out></a>\n");
       out.write("                                        </p>\n");
       out.write("                                    </li>\n");
       out.write("                                </ul>\n");
@@ -201,6 +215,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<div class=\"row\">\n");
       out.write("    <div class=\"col-xs-12\">\n");
       out.write("        <div class=\"box\">\n");
@@ -219,6 +234,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <tr>\n");
       out.write("                        <th>STT</th>\n");
       out.write("                        <th>Tên loại sách</th>\n");
+      out.write("                        <th>Trạng thái</th>\n");
       out.write("                        <th>Thao tác</th>\n");
       out.write("\n");
       out.write("\n");
@@ -227,10 +243,11 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
 
                         Vector<Product> ds = new Vector<Product>();
                         Product pro = new Product();
-                        tbProduct.GetProduct(ds);
+                        tbProduct.GetProductAdmin(ds);
                         int dem = 0;
                         for (Product p : ds) {
                             dem++;
+
 
                     
       out.write("\n");
@@ -241,7 +258,18 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <td>");
       out.print(p.getTen());
       out.write("</td>\n");
-      out.write("                        <th><input type=\"submit\" name=\"fix\" id=\"fix\" value=\"Sửa\"></th>\n");
+      out.write("                        <td>");
+      out.print(p.isTrangthai() ? "Đang bán" : "Đang không bán");
+      out.write("</td>\n");
+      out.write("\n");
+      out.write("                        <th><a href=\"admin.jsp?module=SuaDulieu&id=");
+      out.print(p.getId());
+      out.write("\"><input type=\"submit\" name=\"fix\" id=\"fix\" value=\"Sửa\"></a>\n");
+      out.write("                            <a href=\"DoiTrangThaiLoaiSP?id=");
+      out.print(p.getId());
+      out.write("&tt=");
+      out.print(p.gettrangthai());
+      out.write("\"><input type=\"submit\" name=\"show\" id=\"show\" value=\"Đổi trạng thái\"></a></th>\n");
       out.write("                    </tr>\n");
       out.write("                    ");
     }
@@ -288,8 +316,14 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <br /><br />\n");
       out.write("                            </td>\n");
       out.write("                        </tr>\n");
-      out.write("                       \n");
-      out.write("                    \n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                              Bày bán  <input  class=\"hienthi\" type=\"checkbox\" name=\"trangthai\" id=\"trangthai\" value=\"1\"/> \n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("\n");
+      out.write("\n");
       out.write("                        <tr>\n");
       out.write("                            <td colspan=\"2\" align=\"center\">\n");
       out.write("                                <input  type=\"submit\" id=\"Themmoi\" name=\"Themmoi\" value=\"Thêm mới\" style=\"width:100%;height:40px;background-color:red;border-radius:10px;\"/>\n");
@@ -297,7 +331,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        </tr>\n");
       out.write("                    </table>\n");
       out.write("                </form>\n");
-      out.write("           \n");
+      out.write("\n");
       out.write("            </div><!-- /.box-body -->\n");
       out.write("        </div><!-- /.box -->\n");
       out.write("    </div>\n");
@@ -309,6 +343,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
                     
       out.write("\n");
       out.write("                    ");
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -340,6 +375,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <th>Hình Ảnh</th>\n");
       out.write("                        <th>Mô tả</th>\n");
       out.write("                        <th>Nhóm sản phẩm </th>\n");
+      out.write("                        <th>Trạng thái</th>\n");
       out.write("                        <th>Thao tác</th>\n");
       out.write("\n");
       out.write("\n");
@@ -350,11 +386,13 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
                         ListProduct pro = new ListProduct();
                         tbProduct.LayDuLieuAdmin(ds);
                         int dem = 0;
-                        String img = "noimage.jpg";
+                        DecimalFormat formatter = new DecimalFormat("###,###,###");
                         for (ListProduct p : ds) {
+                            String img = "noimage.jpg";
                             if (p.getHinhAnh() != null && p.getHinhAnh().equals("") == false) {
                                 img = p.getHinhAnh();
                             }
+                            
                             dem++;
 
                     
@@ -367,10 +405,10 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.print(p.getTensp());
       out.write("</td>\n");
       out.write("                        <td>");
-      out.print(p.getGiaSP());
+      out.print(formatter.format(Integer.parseInt(p.getGiaSP())));
       out.write("</td>\n");
       out.write("                        <td><img src=\"Uploads/");
-      out.print(p.getHinhAnh());
+      out.print(img);
       out.write("\" height=\"100px\" width=\"100px\"></td>\n");
       out.write("                        <td style=\"width: 500px\">");
       out.print(p.getMoTa());
@@ -378,10 +416,21 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <td>");
       out.print(p.getIdproducts());
       out.write("</td>\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("                        <th><input type=\"submit\" name=\"fix\" id=\"fix\" value=\"Sửa\"></th>\n");
+      out.write("                        <td>");
+      out.print(p.isTrangthai() ? "Đang bán" : "Không được bán");
+      out.write("</td>\n");
+      out.write("                        <th><a href=\"admin.jsp?module=SuaDulieuSP&id=");
+      out.print(p.getId());
+      out.write("\"><input type=\"submit\" name=\"fix\" id=\"fix\" value=\"Sửa\" ></a>\n");
+      out.write("                            <a href=\"XuLyXoa?id=");
+      out.print(p.getId());
+      out.write("\"><input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Xóa\"></a>\n");
+      out.write("                            <a href=\"DoiTrangThaiSP?id=");
+      out.print(p.getId());
+      out.write("&tt=");
+      out.print(p.gettrangthai());
+      out.write("\"><input type=\"submit\" name=\"fix\" id=\"fix\" value=\"Đổi trạng thái\" ></a>\n");
+      out.write("                        </th>\n");
       out.write("                    </tr>\n");
       out.write("                    ");
     }
@@ -394,8 +443,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</div>");
       out.write("\n");
       out.write("                    ");
-
-                        }else if (module.equalsIgnoreCase("themSP")) {
+} else if (module.equalsIgnoreCase("themSP")) {
                     
       out.write("\n");
       out.write("                    ");
@@ -420,33 +468,322 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </div><!-- /.box-header -->\n");
       out.write("            <div class=\"box-body table-responsive no-padding\">\n");
       out.write("                </table>\n");
-      out.write("                <form id=\"FDK\" action=\"XuLythemLoaiSach\" method=\"post\">\n");
+      out.write("                <form id=\"FDK\" action=\"XuLythemSach\" method=\"post\" enctype=\"multipart/form-data\">\n");
       out.write("                    <table border=\"0\" align=\"center\" >\n");
       out.write("                        <tr>\n");
       out.write("                            <td>\n");
-      out.write("                                <input  class=\"hienthi\" type=\"text\" name=\"loaisach\" id=\"loaisach\" placeholder=\"   Tên loại sách\"/>\n");
+      out.write("                                Tên sách\n");
+      out.write("                            </td>\n");
+      out.write("                            <td>\n");
+      out.write("                                <input type=\"text\" name=\"Ten\" id=\"Ten\"/>\n");
       out.write("\n");
       out.write("                                <br /><br />\n");
       out.write("                            </td>\n");
       out.write("                        </tr>\n");
-      out.write("                       \n");
-      out.write("                    \n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                                Giá sách\n");
+      out.write("                            </td>\n");
+      out.write("                            <td>\n");
+      out.write("                                <input type=\"text\" name=\"Gia\" id=\"Gia\"/>\n");
+      out.write("\n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                                Hình Ảnh\n");
+      out.write("                            </td>\n");
+      out.write("                            <td>\n");
+      out.write("                                <input type=\"file\" name=\"HinhAnh\" id=\"HinhAnh\"/>\n");
+      out.write("\n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                                Mô tả\n");
+      out.write("                            </td>\n");
+      out.write("                            <td>\n");
+      out.write("                                <textarea type=\"text\" name=\"MoTa\" id=\"MoTa\" style=\"width: 700px;height: 300px;\"></textarea>\n");
+      out.write("\n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                                Nhóm sách  \n");
+      out.write("                            </td>\n");
+      out.write("\n");
+      out.write("                            <td>\n");
+      out.write("                                <select name=\"Nhom\" id=\"nhom\">\n");
+      out.write("                                    ");
+
+                                        Vector<Product> ds = new Vector<Product>();
+                                        Product pro = new Product();
+                                        tbProduct.GetProduct(ds);
+                                        for (Product p : ds) {
+                                    
+      out.write("\n");
+      out.write("                                    <option value=\"");
+      out.print(p.getId());
+      out.write('"');
+      out.write('>');
+      out.print(p.getTen());
+      out.write("</option>\n");
+      out.write("                                    ");
+
+                                        }
+                                    
+      out.write("\n");
+      out.write("\n");
+      out.write("                                </select>\n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                                Bày bán  <input  class=\"hienthi\" type=\"checkbox\" name=\"trangthai\" id=\"trangthai\" value=\"1\"/> \n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
       out.write("                        <tr>\n");
       out.write("                            <td colspan=\"2\" align=\"center\">\n");
-      out.write("                                <input  type=\"submit\" id=\"Themmoi\" name=\"Themmoi\" value=\"Thêm mới\" style=\"width:100%;height:40px;background-color:red;border-radius:10px;\"/>\n");
+      out.write("                                <input  type=\"submit\" id=\"Themmoi\" name=\"Gia\" value=\"Thêm mới\" style=\"width:100%;height:40px;background-color:red;border-radius:10px;\"/>\n");
       out.write("                            </td>\n");
       out.write("                        </tr>\n");
       out.write("                    </table>\n");
       out.write("                </form>\n");
-      out.write("           \n");
+      out.write("\n");
       out.write("            </div><!-- /.box-body -->\n");
       out.write("        </div><!-- /.box -->\n");
       out.write("    </div>\n");
       out.write("</div>");
       out.write("\n");
       out.write("                    ");
+} else if (module.equalsIgnoreCase("SuaDulieu")) {
+                    
+      out.write("\n");
+      out.write("                    ");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<div class=\"row\">\n");
+      out.write("    <div class=\"col-xs-12\">\n");
+      out.write("        <div class=\"box\">\n");
+      out.write("            <div class=\"box-header\">\n");
+      out.write("                <div class=\"box-tools\">\n");
+      out.write("                    <div class=\"input-group\">\n");
+      out.write("                        <input type=\"text\" name=\"table_search\" class=\"form-control input-sm pull-right\" style=\"width: 150px;\" placeholder=\"Search\"/>\n");
+      out.write("                        <div class=\"input-group-btn\">\n");
+      out.write("                            <button class=\"btn btn-sm btn-default\"><i class=\"fa fa-search\"></i></button>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("            </div><!-- /.box-header -->\n");
+      out.write("            <div class=\"box-body table-responsive no-padding\">\n");
+      out.write("                </table>\n");
+      out.write("                ");
+
+                    int id;
+                    if (request.getParameter("id") == null || Controller.Tientich.isInteger(request.getParameter("id")) == false) {
+                        out.println("<h3>Lỗi ID</h3>");
+                    } else {
+                        id = Integer.parseInt(request.getParameter("id"));
+                        Product pro = new Product();
+                        int kq = tbProduct.GetOneTypeProduct(id, pro);
+                        if (kq > 0) {
+
+                
+      out.write("\n");
+      out.write("                <form id=\"FDK\" action=\"XuLySuaLoaiSP\" method=\"post\">\n");
+      out.write("                    <table border=\"0\" align=\"center\" >\n");
+      out.write("                        <input type=\"hidden\" readonly name=\"id\" id=\"id\" value=\"");
+      out.print(pro.getId());
+      out.write("\"/>\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                               Tên sách <input type=\"text\" name=\"Ten\" id=\"Ten\" value=\"");
+      out.print(pro.getTen());
+      out.write("\"/>\n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                                Bày bán  <input  class=\"hienthi\" type=\"checkbox\" name=\"trangthai\" id=\"trangthai\" value=\"1\"");
+      out.print((pro.isTrangthai() == true) ? "checked" : "");
+      out.write("/> \n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td colspan=\"2\" align=\"center\">\n");
+      out.write("                                <input  type=\"submit\" id=\"Sua\" name=\"Sua\" value=\"Sửa\" style=\"width:100%;height:40px;background-color:red;border-radius:10px;\"/>\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("\n");
+      out.write("                    </table>\n");
+      out.write("                </form>\n");
+      out.write("                ");
 
                         }
+                    }
+                
+      out.write("\n");
+      out.write("            </div><!-- /.box-body -->\n");
+      out.write("        </div><!-- /.box -->\n");
+      out.write("    </div>\n");
+      out.write("</div>");
+      out.write("\n");
+      out.write("                    ");
+} else if (module.equalsIgnoreCase("SuaDulieuSP")) {
+                    
+      out.write("\n");
+      out.write("                    ");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<div class=\"row\">\n");
+      out.write("    <div class=\"col-xs-12\">\n");
+      out.write("        <div class=\"box\">\n");
+      out.write("            <div class=\"box-header\">\n");
+      out.write("                <div class=\"box-tools\">\n");
+      out.write("                    <div class=\"input-group\">\n");
+      out.write("                        <input type=\"text\" name=\"table_search\" class=\"form-control input-sm pull-right\" style=\"width: 150px;\" placeholder=\"Search\"/>\n");
+      out.write("                        <div class=\"input-group-btn\">\n");
+      out.write("                            <button class=\"btn btn-sm btn-default\"><i class=\"fa fa-search\"></i></button>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("            </div><!-- /.box-header -->\n");
+      out.write("            <div class=\"box-body table-responsive no-padding\">\n");
+      out.write("\n");
+      out.write("                ");
+
+                    int id;
+                    if (request.getParameter("id") == null || Controller.Tientich.isInteger(request.getParameter("id")) == false) {
+                        out.println("<h3>Lỗi ID</h3>");
+                    } else {
+                        id = Integer.parseInt(request.getParameter("id"));
+                        ListProduct sp = new ListProduct();
+                        int kq = tbProduct.GetOneProduct(id, sp);
+
+                
+      out.write("\n");
+      out.write("                <form id=\"FDK\" action=\"XuLySuaSP\" method=\"post\" enctype=\"multipart/form-data\">\n");
+      out.write("                    <table border=\"0\" align=\"center\" >\n");
+      out.write("                        <input type=\"hidden\" name=\"id\" id=\"id\" value=\"");
+      out.print(sp.getId());
+      out.write("\"/>\n");
+      out.write("\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                                Tên sách <input type=\"text\" name=\"Ten\" id=\"Ten\" value=\"");
+      out.print(sp.getTensp());
+      out.write("\"/>\n");
+      out.write("\n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("                           \n");
+      out.write("                            <td>\n");
+      out.write("                              Giá sách  <input type=\"text\" name=\"Gia\" id=\"Gia\" value=\"");
+      out.print(sp.getGiaSP());
+      out.write("\"/>\n");
+      out.write("\n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                               Hình Ảnh <img src=\"Uploads/");
+      out.print(sp.getHinhAnh());
+      out.write("\" height=\"300px\" width=\"200px\">\n");
+      out.write("                                <br>\n");
+      out.write("                                         <input type=\"text\" readonly name=\"tAnhHientai\" id=\"tAnhHientai\" value=\"");
+      out.print(sp.getHinhAnh());
+      out.write("\">\n");
+      out.write("                                <input type=\"file\" name=\"HinhAnh\" id=\"HinhAnh\"/>\n");
+      out.write("\n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("                           \n");
+      out.write("                            <td>\n");
+      out.write("                                Mô tả<textarea type=\"text\" name=\"MoTa\" id=\"MoTa\" style=\"width: 700px;height: 300px;\">");
+      out.print(sp.getMoTa());
+      out.write("</textarea>\n");
+      out.write("\n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                            <td>\n");
+      out.write("                               Nhóm sách<select name=\"Nhom\" id=\"nhom\">\n");
+      out.write("                                    ");
+
+                                        Vector<Product> ds = new Vector<Product>();
+                                        Product pro = new Product();
+                                        tbProduct.GetProduct(ds);
+                                        for (Product p : ds) {
+                                    
+      out.write("\n");
+      out.write("                                    <option value=\"");
+      out.print(p.getId());
+      out.write('"');
+      out.write('>');
+      out.print(p.getTen());
+      out.write("</option>\n");
+      out.write("                                    ");
+
+                                        }
+                                    
+      out.write("\n");
+      out.write("\n");
+      out.write("                                </select>\n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>\n");
+      out.write("                                Bày bán  <input  class=\"hienthi\" type=\"checkbox\" name=\"trangthai\" id=\"trangthai\" value=\"1\"");
+      out.print((sp.isTrangthai() == true) ? "checked" : "");
+      out.write("/> \n");
+      out.write("                                <br /><br />\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td colspan=\"2\" align=\"center\">\n");
+      out.write("                                <input  type=\"submit\" id=\"Sua\" name=\"Sua\" value=\"Sửa\" style=\"width:100%;height:40px;background-color:red;border-radius:10px;\"/>\n");
+      out.write("                            </td>\n");
+      out.write("                        </tr>\n");
+      out.write("                    </table>\n");
+      out.write("                </form>\n");
+      out.write("                ");
+
+                    }
+                
+      out.write("\n");
+      out.write("            </div><!-- /.box-body -->\n");
+      out.write("        </div><!-- /.box -->\n");
+      out.write("    </div>\n");
+      out.write("</div>");
+      out.write("\n");
+      out.write("                    ");
+}
                     
       out.write("\n");
       out.write("                </section><!-- /.Left col -->\n");

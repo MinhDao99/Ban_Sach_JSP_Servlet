@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE 2 | Dashboard</title>
+        <title>Quản trị admin</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
@@ -33,14 +33,14 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                                    <span class="hidden-xs">Alexander Pierce</span>
+                                    <span class="hidden-xs"><%=session.getAttribute("useradmin")%></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
                                         <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                                         <p>
-                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="loginadmin.jsp" class="btn btn-default btn-flat">Sign out</a>
                                         </p>
                                     </li>
                                 </ul>
@@ -59,9 +59,7 @@
                             <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Alexander Pierce</p>
-
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                            <p><%=session.getAttribute("useradmin")%></p>
                         </div>
                     </div>
                     <!-- sidebar menu: : style can be found in sidebar.less -->

@@ -159,21 +159,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("            <div class=\"col-lg-6\">\n");
-      out.write("                <nav class=\"header__menu\">\n");
-      out.write("                    <ul>\n");
-      out.write("                        <li><a href=\"index.jsp\">Home</a></li>\n");
-      out.write("                        <li><a href=\"index.jsp?module=shop\">Love</a></li>\n");
-      out.write("                        <li><a href=\"#\">Pages</a>\n");
-      out.write("                            <ul class=\"header__menu__dropdown\">\n");
-      out.write("                                <li><a href=\"index.jsp?module=shopDetails\">Sales</a></li>\n");
-      out.write("                                <li><a href=\"index.jsp?module=shopCart\">Free Ship</a></li>\n");
-      out.write("\n");
-      out.write("                            </ul>\n");
-      out.write("                        </li>\n");
-      out.write("                        <li><a href=\"index.jsp?module=blog\">Blog</a></li>\n");
-      out.write("                        <li><a href=\"index.jsp?module=contact\">Contact</a></li>\n");
-      out.write("                    </ul>\n");
-      out.write("                </nav>\n");
+      out.write("                \n");
       out.write("            </div>\n");
       out.write("            <div class=\"col-lg-3\">\n");
       out.write("                <div class=\"header__cart\">\n");
@@ -243,10 +229,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <div class=\"hero__search\">\n");
       out.write("                                <div class=\"hero__search__form\">\n");
       out.write("                                    <form action=\"index.jsp?module=timkiem\" method=\"post\">\n");
-      out.write("                                        <div class=\"hero__search__categories\">\n");
-      out.write("                                            All Categories\n");
-      out.write("                                            <span class=\"arrow_carrot-down\"></span>\n");
-      out.write("                                        </div>\n");
+      out.write("                                       \n");
       out.write("                                        <input type=\"text\" name=\"search\" placeholder=\"What do yo u need?\">\n");
       out.write("                                        <button type=\"submit\" class=\"site-btn\">SEARCH</button>\n");
       out.write("                                    </form>\n");
@@ -256,7 +239,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                        <i class=\"fa fa-phone\"></i>\n");
       out.write("                                    </div>\n");
       out.write("                                    <div class=\"hero__search__phone__text\">\n");
-      out.write("                                        <h5>+65 11.188.888</h5>\n");
+      out.write("                                        <h5>(+84) 0327 614 768</h5>\n");
       out.write("                                        <span>support 24/7 time</span>\n");
       out.write("                                    </div>\n");
       out.write("                                </div>\n");
@@ -277,9 +260,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("        ");
-    
             request.setCharacterEncoding("utf-8");
-                    
+
             String md = "";
             if (request.getParameter("module") != null) {
                 md = (String) request.getParameter("module");
@@ -308,15 +290,15 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        ");
 
-        } else if (md.equalsIgnoreCase("blog")) {
+        } else if (md.equalsIgnoreCase("cart")) {
         
       out.write("\n");
       out.write("        ");
-      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "blog.jsp", out, false);
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "shopingcart.jsp", out, false);
       out.write("\n");
       out.write("        ");
 
-        }else if (md.equalsIgnoreCase("timkiem")) {
+        } else if (md.equalsIgnoreCase("timkiem")) {
         
       out.write("\n");
       out.write("        ");
@@ -329,6 +311,9 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        ");
       org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "incl/slideProduct.jsp", out, false);
+      out.write("\n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "incl/LatestProduct.jsp", out, false);
       out.write("\n");
       out.write("\n");
       out.write("        ");
