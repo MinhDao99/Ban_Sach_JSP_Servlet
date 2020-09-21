@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CSDL;
+package CSDLCustomer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ public class tbUser {
         if (conn == null) {
             return -1;
         }
-        String sql = "SELECT * FROM user WHERE Email=? and Password=?";
+        String sql = "SELECT * FROM usercustomer WHERE Email=? and Password=?";
         try {
             PreparedStatement smt = conn.prepareCall(sql);
             smt.setString(1, user);
@@ -46,17 +46,14 @@ public class tbUser {
         if (conn == null) {
             return -1;
         }
-        String sql = "INSERT INTO user values(null,?,?,?,?,?,?)";
+        String sql = "INSERT INTO usercustomer values(null,?,?,?,?)";
         //String sql="INSERT INTO taikhoan1(Username,Password,Email) values(?,?,?)";
         try {
             PreparedStatement smt = conn.prepareStatement(sql);
             smt.setString(1, tk.getEmail());
             smt.setString(2, tk.getPass());
             smt.setString(3, tk.getHoten());
-            smt.setString(4, tk.getTenhienthi());
-            smt.setInt(5, tk.getSdt());
-            smt.setString(6, tk.getHinhanh());
-
+            smt.setInt(4, tk.getSdt());
             int kq = smt.executeUpdate();
             if (kq > 0) {
                 return 1;

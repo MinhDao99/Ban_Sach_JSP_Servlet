@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package ControllerAdmin;
 
-import CSDL.tbProduct;
+import CSDLAdmin.tbProductAdmin;
+import CSDLCustomer.tbProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -35,10 +36,10 @@ public class XuLyXoa extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             int id= Integer.parseInt(request.getParameter("id"));
-            int kq=tbProduct.Delete(id);
+            int kq=tbProductAdmin.Delete(id);
             if(kq>0)
             {
-                request.getRequestDispatcher("admin.jsp").include(request, response);
+                response.sendRedirect("admin.jsp?module=DSSP");
             }
         }
     }

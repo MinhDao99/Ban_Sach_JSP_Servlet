@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CSDL;
+package CSDLCustomer;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,7 +19,7 @@ public class database {
 
     static String user = "root";
     static String pass = "";
-    static String url="jdbc:mysql://localhost:3306/taikhoan?useUnicode=true&characterEncoding=utf8";
+    static String url="jdbc:mysql://localhost:3306/Book_Store?useUnicode=true&characterEncoding=utf8";
 
     public static Connection ketnoi() {
 

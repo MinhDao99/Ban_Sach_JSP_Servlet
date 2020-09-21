@@ -6,7 +6,7 @@ import javax.servlet.jsp.*;
 import java.util.Vector;
 import model.Product;
 import model.ListProduct;
-import CSDL.tbProduct;
+import CSDLCustomer.tbProduct;
 import model.Product;
 import java.util.Vector;
 
@@ -164,10 +164,10 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <div class=\"col-lg-3\">\n");
       out.write("                <div class=\"header__cart\">\n");
       out.write("                    <ul>\n");
-      out.write("                        <li><a href=\"#\"><i class=\"fa fa-heart\"></i> <span>1</span></a></li>\n");
-      out.write("                        <li><a href=\"#\"><i class=\"fa fa-shopping-bag\"></i> <span>3</span></a></li>\n");
+      out.write("                        <li><a href=\"#\"><i class=\"fa fa-heart\"></i></a></li>\n");
+      out.write("                        <li><a href=\"index.jsp?module=cart\"><i class=\"fa fa-shopping-bag\"></i></a></li>\n");
       out.write("                    </ul>\n");
-      out.write("                    <div class=\"header__cart__price\">item: <span>$150.00</span></div>\n");
+      out.write("                    \n");
       out.write("                </div>\n");
       out.write("            </div>\n");
       out.write("        </div>\n");
@@ -188,16 +188,12 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    <div class=\"row\">\n");
       out.write("                        <div class=\"col-lg-3\">\n");
       out.write("                            <div class=\"hero__categories\">\n");
-      out.write("                                <div class=\"hero__categories__all\">\n");
-      out.write("                                    <i class=\"fa fa-bars\"></i>\n");
-      out.write("                                    <span><a>All Book</span>\n");
-      out.write("                                </div>\n");
       out.write("                                <ul>\n");
       out.write("                                    ");
 
                                        
                                         Vector<Product> ds = new Vector<Product>();
-                                        int kq = CSDL.tbProduct.GetProduct(ds);
+                                        int kq = CSDLCustomer.tbProduct.GetProduct(ds);
                                         if (kq == 0) {
 
 
@@ -230,7 +226,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <div class=\"hero__search__form\">\n");
       out.write("                                    <form action=\"index.jsp?module=timkiem\" method=\"post\">\n");
       out.write("                                       \n");
-      out.write("                                        <input type=\"text\" name=\"search\" placeholder=\"What do yo u need?\">\n");
+      out.write("                                        <input type=\"text\" name=\"search\" placeholder=\"Tìm kiếm sách của bạn ở đây  -> \">\n");
       out.write("                                        <button type=\"submit\" class=\"site-btn\">SEARCH</button>\n");
       out.write("                                    </form>\n");
       out.write("                                </div>\n");

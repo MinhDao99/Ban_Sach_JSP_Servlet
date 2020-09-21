@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="model.ListProduct"%>
-<%@page import="CSDL.tbProduct"%>
+<%@page import="CSDLAdmin.tbProductAdmin"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -31,7 +31,7 @@
                     } else {
                         id = Integer.parseInt(request.getParameter("id"));
                         ListProduct sp = new ListProduct();
-                        int kq = tbProduct.GetOneProduct(id, sp);
+                        int kq = tbProductAdmin.GetOneProduct(id, sp);
 
                 %>
                 <form id="FDK" action="XuLySuaSP" method="post" enctype="multipart/form-data">
@@ -79,7 +79,7 @@
                                     <%
                                         Vector<Product> ds = new Vector<Product>();
                                         Product pro = new Product();
-                                        tbProduct.GetProduct(ds);
+                                        tbProductAdmin.GetProduct(ds);
                                         for (Product p : ds) {
                                     %>
                                     <option value="<%=p.getId()%>"><%=p.getTen()%></option>

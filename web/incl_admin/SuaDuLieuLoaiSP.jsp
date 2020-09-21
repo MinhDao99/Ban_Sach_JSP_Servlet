@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="model.ListProduct"%>
-<%@page import="CSDL.tbProduct"%>
+<%@page import="CSDLAdmin.tbProductAdmin"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -31,7 +31,7 @@
                     } else {
                         id = Integer.parseInt(request.getParameter("id"));
                         Product pro = new Product();
-                        int kq = tbProduct.GetOneTypeProduct(id, pro);
+                        int kq = tbProductAdmin.GetOneTypeProduct(id, pro);
                         if (kq > 0) {
 
                 %>

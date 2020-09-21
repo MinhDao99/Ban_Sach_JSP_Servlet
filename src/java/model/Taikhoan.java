@@ -11,32 +11,29 @@ package model;
  */
 public class Taikhoan {
 
+    private int id;
     private String email;
     private String pass;
     private String hoten;
-    private String tenhienthi;
     private int sdt;
-    private String hinhanh;
 
     public Taikhoan() {
     }
 
-    public Taikhoan(String email, String pass, String hoten, String tenhienthi, int sdt, String hinhanh) {
+    public Taikhoan(int id,String email, String pass, String hoten, int sdt) {
+        this.id=id;
         this.email = email;
         this.pass = pass;
         this.hoten = hoten;
-        this.tenhienthi = tenhienthi;
         this.sdt = sdt;
-        this.hinhanh = hinhanh;
-
     }
 
-    public String getHinhanh() {
-        return hinhanh;
+    public int getId() {
+        return id;
     }
 
-    public void setHinhanh(String hinhanh) {
-        this.hinhanh = hinhanh;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -61,14 +58,6 @@ public class Taikhoan {
 
     public void setHoten(String hoten) {
         this.hoten = hoten;
-    }
-
-    public String getTenhienthi() {
-        return tenhienthi;
-    }
-
-    public void setTenhienthi(String tenhienthi) {
-        this.tenhienthi = tenhienthi;
     }
 
     public int getSdt() {

@@ -50,6 +50,7 @@ public class Admin implements Filter {
          req.setCharacterEncoding("UTF-8");
         if (session.getAttribute("useradmin") == null) {
             res.sendRedirect("loginadmin.jsp");
+            session.setMaxInactiveInterval(1);
         }
 
         // Write code here to process the request and/or response before

@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package ControllerAdmin;
 
-import CSDL.tbProduct;
+import CSDLAdmin.tbProductAdmin;
+import CSDLCustomer.tbProduct;
+import Controller.Tientich;
+import Controller.Uploads;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -69,11 +72,11 @@ public class XuLySuaSP extends HttpServlet {
                 }
                 ListProduct p = new ListProduct(id, Tensach, GiaSach, HinhAnh, MoTa, id, tbtrangthai);
 
-                int kq = tbProduct.FixSP(id, p);
+                int kq = tbProductAdmin.FixSP(id, p);
 
                 if (kq > 0) {
 
-                    request.getRequestDispatcher("admin.jsp?module=DSSP").include(request, response);
+                   response.sendRedirect("admin.jsp?module=DSSP");
                 }
             }
         } catch (FileUploadException ex) {

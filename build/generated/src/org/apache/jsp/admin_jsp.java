@@ -4,26 +4,40 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.text.DecimalFormat;
-import CSDL.tbProduct;
+import CSDLAdmin.tbProductAdmin;
 import java.util.Vector;
 import model.Product;
-import CSDL.tbProduct;
+import CSDLAdmin.tbProductAdmin;
 import java.util.Vector;
 import model.Product;
 import java.text.DecimalFormat;
 import model.ListProduct;
-import CSDL.tbProduct;
+import CSDLAdmin.tbProductAdmin;
 import java.util.Vector;
 import model.Product;
-import CSDL.tbProduct;
-import java.util.Vector;
-import model.Product;
-import model.ListProduct;
-import CSDL.tbProduct;
+import CSDLAdmin.tbProductAdmin;
 import java.util.Vector;
 import model.Product;
 import model.ListProduct;
-import CSDL.tbProduct;
+import CSDLAdmin.tbProductAdmin;
+import java.util.Vector;
+import model.Product;
+import CSDLAdmin.tbUserAdmin;
+import model.Taikhoan;
+import java.text.DecimalFormat;
+import model.ListProduct;
+import CSDLAdmin.tbProductAdmin;
+import java.util.Vector;
+import model.Product;
+import model.ListProduct;
+import CSDLAdmin.tbProductAdmin;
+import java.util.Vector;
+import model.Product;
+import model.TaikhoanAdmin;
+import CSDLAdmin.tbUserAdmin;
+import java.text.DecimalFormat;
+import model.ListProduct;
+import CSDLAdmin.tbProductAdmin;
 import java.util.Vector;
 import model.Product;
 
@@ -35,14 +49,16 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
   private static java.util.List<String> _jspx_dependants;
 
   static {
-    _jspx_dependants = new java.util.ArrayList<String>(7);
+    _jspx_dependants = new java.util.ArrayList<String>(9);
     _jspx_dependants.add("/incl_admin/menu.jsp");
     _jspx_dependants.add("/incl_admin/Admin_main.jsp");
     _jspx_dependants.add("/incl_admin/themloaisanpham.jsp");
     _jspx_dependants.add("/incl_admin/DSSP.jsp");
     _jspx_dependants.add("/incl_admin/themSP.jsp");
     _jspx_dependants.add("/incl_admin/SuaDuLieuLoaiSP.jsp");
+    _jspx_dependants.add("/incl_admin/TKKH.jsp");
     _jspx_dependants.add("/incl_admin/SuaDulieuSP.jsp");
+    _jspx_dependants.add("/incl_admin/TKAdmin.jsp");
   }
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -82,7 +98,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta charset=\"UTF-8\">\n");
-      out.write("        <title>AdminLTE 2 | Dashboard</title>\n");
+      out.write("        <title>Quản trị admin</title>\n");
       out.write("        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>\n");
       out.write("\n");
       out.write("        <link href=\"bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\" />    \n");
@@ -115,7 +131,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                    <li class=\"user-header\">\n");
       out.write("                                        <img src=\"dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\" />\n");
       out.write("                                        <p>\n");
-      out.write("                                            <a href=\"#\" class=\"btn btn-default btn-flat\">Sign out></a>\n");
+      out.write("                                            <a href=\"loginadmin.jsp\" class=\"btn btn-default btn-flat\">Sign out</a>\n");
       out.write("                                        </p>\n");
       out.write("                                    </li>\n");
       out.write("                                </ul>\n");
@@ -134,9 +150,9 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <img src=\"dist/img/user2-160x160.jpg\" class=\"img-circle\" alt=\"User Image\" />\n");
       out.write("                        </div>\n");
       out.write("                        <div class=\"pull-left info\">\n");
-      out.write("                            <p>Alexander Pierce</p>\n");
-      out.write("\n");
-      out.write("                            <a href=\"#\"><i class=\"fa fa-circle text-success\"></i> Online</a>\n");
+      out.write("                            <p>");
+      out.print(session.getAttribute("useradmin"));
+      out.write("</p>\n");
       out.write("                        </div>\n");
       out.write("                    </div>\n");
       out.write("                    <!-- sidebar menu: : style can be found in sidebar.less -->\n");
@@ -167,12 +183,24 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </li>\n");
       out.write("    <li class=\"treeview\">\n");
       out.write("        <a href=\"#\">\n");
-      out.write("            <i class=\"fa fa-table\"></i> <span>Quản lý slide</span>\n");
+      out.write("            <i class=\"fa fa-table\"></i> <span>Tài khoản khách hàng</span>\n");
       out.write("            <i class=\"fa fa-angle-left pull-right\"></i>\n");
       out.write("        </a>\n");
       out.write("        <ul class=\"treeview-menu\">\n");
-      out.write("            <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Danh sách silde</a></li>\n");
+      out.write("            <li><a href=\"admin.jsp?module=DSTKKH\"><i class=\"fa fa-circle-o\"></i> Danh sách</a></li>\n");
+      out.write("\n");
+      out.write("        </ul>\n");
+      out.write("    </li>\n");
+      out.write("    <li class=\"treeview\">\n");
+      out.write("        <a href=\"#\">\n");
+      out.write("            <i class=\"fa fa-table\"></i> <span>Tài khoản Admin và NV</span>\n");
+      out.write("            <i class=\"fa fa-angle-left pull-right\"></i>\n");
+      out.write("        </a>\n");
+      out.write("        <ul class=\"treeview-menu\">\n");
+      out.write("            <li><a href=\"admin.jsp?module=DSTKAdmin\"><i class=\"fa fa-circle-o\"></i> Danh sách</a></li>\n");
       out.write("            <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Thêm mới</a></li>\n");
+      out.write("\n");
+      out.write("\n");
       out.write("        </ul>\n");
       out.write("    </li>\n");
       out.write("\n");
@@ -187,8 +215,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <!-- Content Header (Page header) -->\n");
       out.write("                <section class=\"content-header\">\n");
       out.write("                    <h1>\n");
-      out.write("                        Dashboard\n");
-      out.write("                        <small>Control panel</small>\n");
+      out.write("                        Quản lý\n");
       out.write("                    </h1>\n");
       out.write("                    <ol class=\"breadcrumb\">\n");
       out.write("                        <li><a href=\"#\"><i class=\"fa fa-dashboard\"></i> Home</a></li>\n");
@@ -243,7 +270,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
 
                         Vector<Product> ds = new Vector<Product>();
                         Product pro = new Product();
-                        tbProduct.GetProductAdmin(ds);
+                        tbProductAdmin.GetProductAdmin(ds);
                         int dem = 0;
                         for (Product p : ds) {
                             dem++;
@@ -384,7 +411,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
 
                         Vector<ListProduct> ds = new Vector<ListProduct>();
                         ListProduct pro = new ListProduct();
-                        tbProduct.LayDuLieuAdmin(ds);
+                        tbProductAdmin.LayDuLieuAdmin(ds);
                         int dem = 0;
                         DecimalFormat formatter = new DecimalFormat("###,###,###");
                         for (ListProduct p : ds) {
@@ -521,7 +548,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
 
                                         Vector<Product> ds = new Vector<Product>();
                                         Product pro = new Product();
-                                        tbProduct.GetProduct(ds);
+                                        tbProductAdmin.GetProduct(ds);
                                         for (Product p : ds) {
                                     
       out.write("\n");
@@ -595,7 +622,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
                     } else {
                         id = Integer.parseInt(request.getParameter("id"));
                         Product pro = new Product();
-                        int kq = tbProduct.GetOneTypeProduct(id, pro);
+                        int kq = tbProductAdmin.GetOneTypeProduct(id, pro);
                         if (kq > 0) {
 
                 
@@ -641,6 +668,91 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</div>");
       out.write("\n");
       out.write("                    ");
+}else if (module.equalsIgnoreCase("DSTKKH")) {
+                    
+      out.write("\n");
+      out.write("                    ");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<div class=\"row\">\n");
+      out.write("    <div class=\"col-xs-12\">\n");
+      out.write("        <div class=\"box\">\n");
+      out.write("            <div class=\"box-header\">\n");
+      out.write("                <div class=\"box-tools\">\n");
+      out.write("                    <div class=\"input-group\">\n");
+      out.write("                        <input type=\"text\" name=\"table_search\" class=\"form-control input-sm pull-right\" style=\"width: 150px;\" placeholder=\"Search\"/>\n");
+      out.write("                        <div class=\"input-group-btn\">\n");
+      out.write("                            <button class=\"btn btn-sm btn-default\"><i class=\"fa fa-search\"></i></button>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("            </div><!-- /.box-header -->\n");
+      out.write("            <div class=\"box-body table-responsive no-padding\">\n");
+      out.write("                <table class=\"table table-hover\">\n");
+      out.write("                    <br>\n");
+      out.write("                    <tr>\n");
+      out.write("\n");
+      out.write("                        <th>STT</th>\n");
+      out.write("                        <th>Email</th>\n");
+      out.write("                        <th>Password</th>\n");
+      out.write("                        <th>Họ tên</th>\n");
+      out.write("                        <th>Số điện thoại </th>\n");
+      out.write("                        <th>Thao tác</th>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                    </tr>\n");
+      out.write("                    ");
+
+                        Vector<Taikhoan> ds = new Vector<Taikhoan>();
+                        Taikhoan taikhaon = new Taikhoan();
+                        tbUserAdmin.GetUserCus(ds);
+                        int dem = 0;
+                        for (Taikhoan p : ds) {
+                            dem++;
+                    
+      out.write("\n");
+      out.write("                    <tr>\n");
+      out.write("                        <td>");
+      out.print(dem);
+      out.write("</td>\n");
+      out.write("                        <td style=\"width: 100px\">");
+      out.print(p.getEmail());
+      out.write("</td>\n");
+      out.write("                        <td style=\"width: 500px\">");
+      out.print(p.getPass());
+      out.write("</td>\n");
+      out.write("                        <td>");
+      out.print(p.getHoten());
+      out.write("</td>\n");
+      out.write("                        <td>");
+      out.print(p.getSdt());
+      out.write("</td>\n");
+      out.write("\n");
+      out.write("                        <th>\n");
+      out.write("                            <a href=\"XyLyXoaUserCus?id=");
+      out.print(p.getId());
+      out.write("\" onclick=\"return confirm('Chắc chắn xóa');\"><input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Xóa\"></a>\n");
+      out.write("                        </th>\n");
+      out.write("                    </tr>\n");
+      out.write("                    ");
+    }
+                    
+      out.write("\n");
+      out.write("                </table>\n");
+      out.write("            </div><!-- /.box-body -->\n");
+      out.write("        </div><!-- /.box -->\n");
+      out.write("    </div>\n");
+      out.write("</div>");
+      out.write("\n");
+      out.write("                    ");
 } else if (module.equalsIgnoreCase("SuaDulieuSP")) {
                     
       out.write("\n");
@@ -675,7 +787,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
                     } else {
                         id = Integer.parseInt(request.getParameter("id"));
                         ListProduct sp = new ListProduct();
-                        int kq = tbProduct.GetOneProduct(id, sp);
+                        int kq = tbProductAdmin.GetOneProduct(id, sp);
 
                 
       out.write("\n");
@@ -737,7 +849,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
 
                                         Vector<Product> ds = new Vector<Product>();
                                         Product pro = new Product();
-                                        tbProduct.GetProduct(ds);
+                                        tbProductAdmin.GetProduct(ds);
                                         for (Product p : ds) {
                                     
       out.write("\n");
@@ -777,6 +889,91 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
                     }
                 
       out.write("\n");
+      out.write("            </div><!-- /.box-body -->\n");
+      out.write("        </div><!-- /.box -->\n");
+      out.write("    </div>\n");
+      out.write("</div>");
+      out.write("\n");
+      out.write("                    ");
+}else if (module.equalsIgnoreCase("DSTKAdmin")) {
+                    
+      out.write("\n");
+      out.write("                    ");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("<div class=\"row\">\n");
+      out.write("    <div class=\"col-xs-12\">\n");
+      out.write("        <div class=\"box\">\n");
+      out.write("            <div class=\"box-header\">\n");
+      out.write("                <div class=\"box-tools\">\n");
+      out.write("                    <div class=\"input-group\">\n");
+      out.write("                        <input type=\"text\" name=\"table_search\" class=\"form-control input-sm pull-right\" style=\"width: 150px;\" placeholder=\"Search\"/>\n");
+      out.write("                        <div class=\"input-group-btn\">\n");
+      out.write("                            <button class=\"btn btn-sm btn-default\"><i class=\"fa fa-search\"></i></button>\n");
+      out.write("                        </div>\n");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("            </div><!-- /.box-header -->\n");
+      out.write("            <div class=\"box-body table-responsive no-padding\">\n");
+      out.write("                <table class=\"table table-hover\">\n");
+      out.write("                    <br>\n");
+      out.write("                    <tr>\n");
+      out.write("\n");
+      out.write("                        <th>STT</th>\n");
+      out.write("                        <th>Email</th>\n");
+      out.write("                        <th>Password</th>\n");
+      out.write("                        <th>Họ tên</th>\n");
+      out.write("                        <th>Số điện thoại </th>\n");
+      out.write("                        <th>Thao tác</th>\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                    </tr>\n");
+      out.write("                    ");
+
+                        Vector<TaikhoanAdmin> ds = new Vector<TaikhoanAdmin>();
+                        TaikhoanAdmin taikhoan = new TaikhoanAdmin();
+                        tbUserAdmin.GetUserAdmin(ds);
+                        int dem = 0;
+                        for (TaikhoanAdmin p : ds) {
+                            dem++;
+                    
+      out.write("\n");
+      out.write("                    <tr>\n");
+      out.write("                        <td>");
+      out.print(dem);
+      out.write("</td>\n");
+      out.write("                        <td style=\"width: 100px\">");
+      out.print(p.getEmail());
+      out.write("</td>\n");
+      out.write("                        <td style=\"width: 500px\">");
+      out.print(p.getPass());
+      out.write("</td>\n");
+      out.write("                        <td>");
+      out.print(p.getHoten());
+      out.write("</td>\n");
+      out.write("                        <td>");
+      out.print(p.getSdt());
+      out.write("</td>\n");
+      out.write("\n");
+      out.write("                        <th>\n");
+      out.write("                            <a href=\"XyLyXoaUserAdmin?id=");
+      out.print(p.getId());
+      out.write("\" onclick=\"return confirm('Chắc chắn xóa');\"><input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Xóa\"></a>\n");
+      out.write("                        </th>\n");
+      out.write("                    </tr>\n");
+      out.write("                    ");
+    }
+                    
+      out.write("\n");
+      out.write("                </table>\n");
       out.write("            </div><!-- /.box-body -->\n");
       out.write("        </div><!-- /.box -->\n");
       out.write("    </div>\n");

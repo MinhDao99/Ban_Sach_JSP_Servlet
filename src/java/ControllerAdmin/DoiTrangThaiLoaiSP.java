@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package ControllerAdmin;
 
-import CSDL.tbProduct;
+import CSDLAdmin.tbProductAdmin;
+import CSDLCustomer.tbProduct;
+import Controller.Tientich;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -45,9 +47,9 @@ public class DoiTrangThaiLoaiSP extends HttpServlet {
                 } else {
                     tt = "0";
                 }
-                int kq = tbProduct.SwapStatus(id, "status", tt,"products");
+                int kq = tbProductAdmin.SwapStatus(id, "status", tt,"products");
                 if (kq > 0) {
-                    request.getRequestDispatcher("admin.jsp?module=loaisach").include(request, response);
+                    response.sendRedirect("admin.jsp?module=loaisach");
                 }
             }
         }

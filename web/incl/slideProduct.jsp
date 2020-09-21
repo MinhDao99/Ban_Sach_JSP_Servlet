@@ -16,7 +16,7 @@
             <div class="categories__slider owl-carousel">
                 <%
                     Vector<ImageSlide> ds = new Vector<ImageSlide>();
-                    int kq = CSDL.tbProduct.GetAllProduct(ds);
+                    int kq = CSDLCustomer.tbProduct.GetAllProduct(ds);
                     if (kq == -1)
                         out.println("<h3>Lỗi kết nối CSDL</h3>");
                     else if (kq == -2)

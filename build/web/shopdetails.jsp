@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="CSDL.tbProduct"%>
+<%@page import="CSDLCustomer.tbProduct"%>
 <%@page import="model.ListProduct"%>
 <%@page import="java.util.Vector"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="CSDL.tbProduct"%>
+<%@page import="CSDLAdmin.tbProductAdmin"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,7 +35,7 @@
                     <%
                         Vector<Product> ds = new Vector<Product>();
                         Product pro = new Product();
-                        tbProduct.GetProductAdmin(ds);
+                        tbProductAdmin.GetProductAdmin(ds);
                         int dem = 0;
                         for (Product p : ds) {
                             dem++;

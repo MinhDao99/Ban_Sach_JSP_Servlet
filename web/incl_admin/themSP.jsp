@@ -4,7 +4,7 @@
     Author     : Minh Dao
 --%>
 
-<%@page import="CSDL.tbProduct"%>
+<%@page import="CSDLAdmin.tbProductAdmin"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -75,7 +75,7 @@
                                     <%
                                         Vector<Product> ds = new Vector<Product>();
                                         Product pro = new Product();
-                                        tbProduct.GetProduct(ds);
+                                        tbProductAdmin.GetProduct(ds);
                                         for (Product p : ds) {
                                     %>
                                     <option value="<%=p.getId()%>"><%=p.getTen()%></option>

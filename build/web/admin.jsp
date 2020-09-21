@@ -73,8 +73,7 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Dashboard
-                        <small>Control panel</small>
+                        Quản lý
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -106,9 +105,15 @@
                     <%} else if (module.equalsIgnoreCase("SuaDulieu")) {
                     %>
                     <%@include file="incl_admin/SuaDuLieuLoaiSP.jsp" %>
+                    <%}else if (module.equalsIgnoreCase("DSTKKH")) {
+                    %>
+                    <%@include file="incl_admin/TKKH.jsp" %>
                     <%} else if (module.equalsIgnoreCase("SuaDulieuSP")) {
                     %>
                     <%@include file="incl_admin/SuaDulieuSP.jsp" %>
+                    <%}else if (module.equalsIgnoreCase("DSTKAdmin")) {
+                    %>
+                    <%@include file="incl_admin/TKAdmin.jsp" %>
                     <%}
                     %>
                 </section><!-- /.Left col -->

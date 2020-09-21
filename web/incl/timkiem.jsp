@@ -8,7 +8,7 @@
 <%@page import="java.util.Vector"%>
 <%@page import="javafx.scene.control.Alert"%>
 <%@page import="model.ListProduct"%>
-<%@page import="CSDL.tbProduct"%>
+<%@page import="CSDLCustomer.tbProduct"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <section class="featured spad">
     <div class="container">

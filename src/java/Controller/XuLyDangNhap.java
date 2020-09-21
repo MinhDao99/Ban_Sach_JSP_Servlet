@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import CSDL.tbUser;
+import CSDLCustomer.tbUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;

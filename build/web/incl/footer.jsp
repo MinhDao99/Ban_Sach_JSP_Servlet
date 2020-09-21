@@ -14,9 +14,9 @@
                         <a href="./index.jsp"><img src="img/logo.png" alt=""></a>
                     </div>
                     <ul>
-                        <li>Address: 60-49 Road 11378 New York</li>
-                        <li>Phone: +65 11.188.888</li>
-                        <li>Email: hello@colorlib.com</li>
+                        <li>Địa chỉ: Số 5-ngõ 72-Bắc Cầu-Ngọc Thụy-Long Biên-Hà Nội</li>
+                        <li>Số điện thoại:(+84)032.7614.768</li>
+                        <li>Email: dao.d.minh.190299@gmail.com</li>
                     </ul>
                 </div>
             </div>

@@ -7,7 +7,8 @@
 <%@page import="java.util.Vector"%>
 <%@page import="model.Product"%>
 <%@page import="model.ListProduct"%>
-<%@page import="CSDL.tbProduct"%>
+<%@page import="CSDLCustomer.tbProduct"%>
+<%@page import="CSDLAdmin.tbProductAdmin"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -69,6 +70,10 @@
         %>
         <jsp:include page="incl/timkiem.jsp"></jsp:include>
         <%
+        }else if (md.equalsIgnoreCase("checkout")) {
+        %>
+        <jsp:include page="checkout.jsp"></jsp:include>
+        <%
         } else {
         %>
         <jsp:include page="incl/slideProduct.jsp"></jsp:include>
@@ -85,9 +90,6 @@
         <script src="js/mixitup.min.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/main.js"></script>
-
-
-
     </body>
 
 </html>

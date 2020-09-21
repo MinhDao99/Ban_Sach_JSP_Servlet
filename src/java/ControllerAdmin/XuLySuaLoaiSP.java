@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package ControllerAdmin;
 
-import CSDL.tbProduct;
+import CSDLAdmin.tbProductAdmin;
+import CSDLCustomer.tbProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -46,10 +47,10 @@ public class XuLySuaLoaiSP extends HttpServlet {
                 tbtt = true;
             }
             Product p= new Product(id, ten, tbtt);
-            int kq=tbProduct.FixLoaiSP(id,p);
+            int kq=tbProductAdmin.FixLoaiSP(id,p);
             if(kq>0)
             {
-                request.getRequestDispatcher("admin.jsp?module=loaisach").include(request, response);
+                response.sendRedirect("admin.jsp?module=loaisach");
             }
         }
     }

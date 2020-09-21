@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package ControllerAdmin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,7 +47,7 @@ public class XuLythemLoaiSach extends HttpServlet {
             }
 
             Product pro = new Product(0, tenloaisach, tbtrangthai);
-            int ketqua = CSDL.tbProduct.SetData(pro);
+            int ketqua = CSDLAdmin.tbProductAdmin.SetData(pro);
             if (ketqua == -1) {
                 out.println("<h3>Lỗi kết nối CSDL</h3>");
             } else if (ketqua == -2) {
@@ -55,7 +55,7 @@ public class XuLythemLoaiSach extends HttpServlet {
             } else if (ketqua == 0) {
                 out.println("<h3>Không cập nhật dữ liệu</h3>");
             } else {
-                request.getRequestDispatcher("admin.jsp").include(request, response);
+                response.sendRedirect("admin.jsp?module=themloaisp");
             }
         }
     }

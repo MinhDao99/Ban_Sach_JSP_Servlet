@@ -12,15 +12,11 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="hero__categories">
-                                <div class="hero__categories__all">
-                                    <i class="fa fa-bars"></i>
-                                    <span><a>All Book</span>
-                                </div>
                                 <ul>
                                     <%
                                        
                                         Vector<Product> ds = new Vector<Product>();
-                                        int kq = CSDL.tbProduct.GetProduct(ds);
+                                        int kq = CSDLCustomer.tbProduct.GetProduct(ds);
                                         if (kq == 0) {
 
 
@@ -43,7 +39,7 @@
                                 <div class="hero__search__form">
                                     <form action="index.jsp?module=timkiem" method="post">
                                        
-                                        <input type="text" name="search" placeholder="What do yo u need?">
+                                        <input type="text" name="search" placeholder="Tìm kiếm sách của bạn ở đây  -> ">
                                         <button type="submit" class="site-btn">SEARCH</button>
                                     </form>
                                 </div>

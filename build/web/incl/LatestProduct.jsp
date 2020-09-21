@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="CSDL.tbProduct"%>
+<%@page import="CSDLCustomer.tbProduct"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.ListProduct"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,7 +17,7 @@
                 <div class="row">
                     <%
                         Vector<ListProduct> dsSP = new Vector<ListProduct>();
-                        tbProduct.LayDuLieuAdmin(dsSP);
+                        tbProduct.LayDuLieuACus(dsSP);
                         DecimalFormat formatter = new DecimalFormat("###,###,###");
                         for (ListProduct p : dsSP) {
                             String img = "noimage.jpg";

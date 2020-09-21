@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package ControllerAdmin;
 
-import CSDL.tbProduct;
+import CSDLCustomer.tbProduct;
+import Controller.Tientich;
+import Controller.Uploads;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -59,7 +61,7 @@ public class XuLythemSach extends HttpServlet {
                         tbtrangthai = true;
                     }
                     ListProduct pro = new ListProduct(0, Tensach, GiaSach, HinhAnh, MoTa, Integer.parseInt(NhomSach),tbtrangthai);
-                    int ketqua = tbProduct.SetDataProductList(pro);
+                    int ketqua = CSDLAdmin.tbProductAdmin.SetDataProductList(pro);
                     if (ketqua == -1) {
                         out.println("<h3>Lỗi kết nối CSDL</h3>");
                     } else if (ketqua == -2) {
@@ -67,7 +69,7 @@ public class XuLythemSach extends HttpServlet {
                     } else if (ketqua == 0) {
                         out.println("<h3>Không cập nhật dữ liệu</h3>");
                     } else {
-                        request.getRequestDispatcher("admin.jsp").include(request, response);
+                      response.sendRedirect("admin.jsp?module=DSSP");
                     }
                 } catch (FileUploadException ex) {
                     Logger.getLogger(XuLythemSach.class.getName()).log(Level.SEVERE, null, ex);

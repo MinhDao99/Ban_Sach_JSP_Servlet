@@ -4,7 +4,7 @@
     Author     : Minh Dao
 --%>
 
-<%@page import="CSDL.tbProduct"%>
+<%@page import="CSDLAdmin.tbProductAdmin"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

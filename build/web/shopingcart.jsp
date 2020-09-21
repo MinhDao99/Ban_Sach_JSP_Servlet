@@ -8,7 +8,7 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.ListProduct"%>
-<%@page import="CSDL.tbProduct"%>
+<%@page import="CSDLCustomer.tbProduct"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -36,25 +36,6 @@
     </head>
 
     <body>
-        <!-- Page Preloder -->
-
-        <!-- Humberger Begin -->
-
-        <!-- Humberger End -->
-
-        <!-- Header Section Begin -->
-
-        <!-- Header Section End -->
-
-        <!-- Hero Section Begin -->
-
-        <!-- Hero Section End -->
-
-        <!-- Breadcrumb Section Begin -->
-
-        <!-- Breadcrumb Section End -->
-
-        <!-- Shoping Cart Section Begin -->
         <%
             DecimalFormat formatter = new DecimalFormat("###,###,###");
             int tongtien = 0;
@@ -79,7 +60,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%                                            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
+                                        <%                                     
+                                            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
                                             if (cart == null) {
                                         %>
                                         <tr>
@@ -118,8 +100,8 @@
                                             <td class="shoping__cart__total">
                                                 <%=formatter.format(tien)%>
                                             </td>
-                                            <td class="shoping__cart__item__close">
-                                                <span class="icon_close"></span>
+                                            <td >
+                                                <span> <a href="XuLyXoaCart?id=<%=id%>"> Xóa</a></span>
                                             </td>
                                         </tr>
 
@@ -151,7 +133,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="shoping__cart__btns">
-                            <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                            <a href="index.jsp?" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
 
 
                         </div>
@@ -175,7 +157,7 @@
                                 <li>Giảm giá <span>0 VNĐ</span></li>
                                 <li>Tổng tiền <span><%=formatter.format(tongtien)%></span></li>
                             </ul>
-                            <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                            <a href="index.jsp?module=checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@
 
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="model.ListProduct"%>
-<%@page import="CSDL.tbProduct"%>
+<%@page import="CSDLAdmin.tbProductAdmin"%>
 <%@page import="java.util.Vector"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -42,7 +42,7 @@
                     <%
                         Vector<ListProduct> ds = new Vector<ListProduct>();
                         ListProduct pro = new ListProduct();
-                        tbProduct.LayDuLieuAdmin(ds);
+                        tbProductAdmin.LayDuLieuAdmin(ds);
                         int dem = 0;
                         DecimalFormat formatter = new DecimalFormat("###,###,###");
                         for (ListProduct p : ds) {
