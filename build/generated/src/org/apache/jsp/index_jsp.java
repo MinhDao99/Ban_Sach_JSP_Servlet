@@ -7,6 +7,7 @@ import java.util.Vector;
 import model.Product;
 import model.ListProduct;
 import CSDLCustomer.tbProduct;
+import CSDLAdmin.tbProductAdmin;
 import model.Product;
 import java.util.Vector;
 
@@ -54,6 +55,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -302,6 +304,14 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        ");
 
+        }else if (md.equalsIgnoreCase("checkout")) {
+        
+      out.write("\n");
+      out.write("        ");
+      org.apache.jasper.runtime.JspRuntimeLibrary.include(request, response, "checkout.jsp", out, false);
+      out.write("\n");
+      out.write("        ");
+
         } else {
         
       out.write("\n");
@@ -329,9 +339,9 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <a href=\"./index.jsp\"><img src=\"img/logo.png\" alt=\"\"></a>\n");
       out.write("                    </div>\n");
       out.write("                    <ul>\n");
-      out.write("                        <li>Address: 60-49 Road 11378 New York</li>\n");
-      out.write("                        <li>Phone: +65 11.188.888</li>\n");
-      out.write("                        <li>Email: hello@colorlib.com</li>\n");
+      out.write("                        <li>Địa chỉ: Số 5-ngõ 72-Bắc Cầu-Ngọc Thụy-Long Biên-Hà Nội</li>\n");
+      out.write("                        <li>Số điện thoại:(+84)032.7614.768</li>\n");
+      out.write("                        <li>Email: dao.d.minh.190299@gmail.com</li>\n");
       out.write("                    </ul>\n");
       out.write("                </div>\n");
       out.write("            </div>\n");
@@ -394,9 +404,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"js/mixitup.min.js\"></script>\n");
       out.write("        <script src=\"js/owl.carousel.min.js\"></script>\n");
       out.write("        <script src=\"js/main.js\"></script>\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("    </body>\n");
       out.write("\n");
       out.write("</html>");

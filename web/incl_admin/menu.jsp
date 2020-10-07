@@ -43,7 +43,7 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="admin.jsp?module=DSTKAdmin"><i class="fa fa-circle-o"></i> Danh sách</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
+            <li><a href="DangKyAdmin.jsp"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
 
 
         </ul>

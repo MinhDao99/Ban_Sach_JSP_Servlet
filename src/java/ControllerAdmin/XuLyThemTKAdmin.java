@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package ControllerAdmin;
 
+import CSDLAdmin.tbUserAdmin;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.TaikhoanAdmin;
 
 /**
  *
  * @author Minh Dao
  */
-@WebServlet(name = "XuLyUpdateCart", urlPatterns = {"/XuLyUpdateCart"})
-public class XuLyUpdateCart extends HttpServlet {
+@WebServlet(name = "XuLyThemTKAdmin", urlPatterns = {"/XuLyThemTKAdmin"})
+public class XuLyThemTKAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,18 +34,28 @@ public class XuLyUpdateCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("utf-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
-            
-            if (cart != null) {
-                for (int id : cart.keySet()) {
-                    int soluongmoi = Integer.parseInt(request.getParameter("soluongmoi_"+id));
-                    cart.put(id, soluongmoi);
-                        
+           String Email = request.getParameter("email");
+            String Pass = request.getParameter("Password");
+            String Repass = request.getParameter("nhaplaimatkhau");
+            String hoten = request.getParameter("hoten");
+            String sdt = request.getParameter("sdt");
+            if (Repass.equalsIgnoreCase(Pass) == false) {
+                out.println("Không trùng password");
+            } else {
+                tbUserAdmin tb = new tbUserAdmin();
+                TaikhoanAdmin tk = new TaikhoanAdmin(0,Email, Pass, hoten, Integer.parseInt(sdt));
+                int kq = tb.add(tk);
+                if (kq == -1) {
+                    out.println("<h3> lỗi kết nối csdl</h3>");
+                } else if (kq == -2) {
+                    out.println("<h3> lỗi SQL</h3>");
+                } else if (kq == 0) {
+                    out.println("<h3> không thêm được</h3>");
+                } else {
+                    request.getRequestDispatcher("loginadmin.jsp").include(request, response);
                 }
-                session.setAttribute("cart", cart);
-                response.sendRedirect("index.jsp?module=cart");
             }
         }
     }

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th9 09, 2020 lúc 07:08 PM
--- Phiên bản máy phục vụ: 10.4.6-MariaDB
--- Phiên bản PHP: 7.3.9
+-- Thời gian đã tạo: Th10 07, 2020 lúc 08:58 AM
+-- Phiên bản máy phục vụ: 10.4.8-MariaDB
+-- Phiên bản PHP: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `taikhoan`
+-- Cơ sở dữ liệu: `book_store`
 --
 
 -- --------------------------------------------------------
@@ -141,9 +141,29 @@ INSERT INTO `user` (`id`, `Email`, `Password`, `HoTen`, `TenHienThi`, `SoDienTho
 (2, 'dao.d.minh.190299@gmail.com', 'daoquangvinh1', 'Đào Đức Minh', 'MinhDao', 327614768, NULL),
 (4, 'dao.q.vinh.240407@gmail.com', 'daoquangvinh1', 'Đào Quang Vinh', 'VinhDao', 222545212, NULL),
 (5, 'admin', '1', 'MinhDao', 'MinhDao', 123, NULL),
-(6, 'admin1', 'admin1', 'Minh', 'Minh', 99999999, NULL),
-(7, 'admin2', '2', 'Đào Đức Minh', 'MinhDao', 222, NULL),
-(8, 'admin3', '3', '123', '1', 1, '123.jpg');
+(6, 'admin1', 'admin1', 'Minh', 'Minh', 99999999, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `usercustomer`
+--
+
+CREATE TABLE `usercustomer` (
+  `id` int(11) NOT NULL,
+  `Email` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `Password` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `HoTen` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `sodienthoai` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `usercustomer`
+--
+
+INSERT INTO `usercustomer` (`id`, `Email`, `Password`, `HoTen`, `sodienthoai`) VALUES
+(1, 'khachhang1', 'khachhang1', 'Đào Đức Minh', 327614768),
+(2, 'khachhang2', 'khachhang2', 'VinhDao', 962154786);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -175,6 +195,12 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `usercustomer`
+--
+ALTER TABLE `usercustomer`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -201,6 +227,12 @@ ALTER TABLE `slidepicture`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT cho bảng `usercustomer`
+--
+ALTER TABLE `usercustomer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

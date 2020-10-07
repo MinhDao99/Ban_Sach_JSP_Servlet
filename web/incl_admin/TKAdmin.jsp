@@ -56,10 +56,17 @@
 
                         <th>
                             <a href="XyLyXoaUserAdmin?id=<%=p.getId()%>" onclick="return confirm('Chắc chắn xóa');"><input type="submit" name="delete" id="delete" value="Xóa"></a>
+                            
                         </th>
                     </tr>
                     <%    }
+                        session.setAttribute("export", ds);
                     %>
+                  <tr>
+                      <td colspan="6" align="center"><a href="EXPORT/export.jsp">Export</a></td>
+
+                        
+                    </tr>
                 </table>
             </div><!-- /.box-body -->
         </div><!-- /.box -->

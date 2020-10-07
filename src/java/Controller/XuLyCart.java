@@ -37,21 +37,22 @@ public class XuLyCart extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
+            
             if (cart == null) {
                 cart = new HashMap<Integer, Integer>();
-            } 
-            int id= Integer.parseInt(request.getParameter("id"));
-            if(cart.containsKey(id)==false)
-            {
-             cart.put(id,1);
-            }else
-            {
-                int soluong= cart.get(id);
+            }
+            int id = Integer.parseInt(request.getParameter("id"));
+            if (cart.containsKey(id) == false) {
+                cart.put(id, 1);
+            } else {
+                int soluong = cart.get(id);
                 soluong++;
                 cart.put(id, soluong);
-                
+
             }
             session.setAttribute("cart", cart);
+         
+
             response.sendRedirect("index.jsp?module=cart");
         }
     }

@@ -60,8 +60,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%                                     
-                                            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
+                                        <%                                            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
                                             if (cart == null) {
                                         %>
                                         <tr>
@@ -79,10 +78,10 @@
                                                         int tien = soluong * Integer.parseInt(pro.getGiaSP());
                                                         tongtien += tien;
 
-
                                             %>
                                         </tr>
                                         <tr>
+                                         
                                             <td class="shoping__cart__item">
                                                 <img src="Uploads/<%=pro.getHinhAnh()%>" height="100px" width="100px" alt="">
                                                 <h5><%=pro.getTensp()%></h5>

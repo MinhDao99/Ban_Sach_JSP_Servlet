@@ -52,6 +52,11 @@
                     </tr>
                     <%    }
                     %>
+                    <tr>
+                      <td colspan="4" align="center"><a href="EXPORT/export.jsp">Export</a></td>
+
+                        
+                    </tr>
                 </table>
             </div><!-- /.box-body -->
         </div><!-- /.box -->
