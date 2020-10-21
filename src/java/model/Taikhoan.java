@@ -16,16 +16,18 @@ public class Taikhoan {
     private String pass;
     private String hoten;
     private int sdt;
+    private String hinhanh;
 
     public Taikhoan() {
     }
 
-    public Taikhoan(int id,String email, String pass, String hoten, int sdt) {
-        this.id=id;
+    public Taikhoan(int id, String email, String pass, String hoten, int sdt) {
+        this.id = id;
         this.email = email;
         this.pass = pass;
         this.hoten = hoten;
         this.sdt = sdt;
+        this.hinhanh = hinhanh;
     }
 
     public int getId() {
@@ -68,4 +70,14 @@ public class Taikhoan {
         this.sdt = sdt;
     }
 
+    public String getHinhanh() {
+        return hinhanh;
+    }
+
+    public void setHinhanh(String hinhanh) {
+        this.hinhanh = hinhanh;
+    }
+    
+
+    
 }

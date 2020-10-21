@@ -15,16 +15,18 @@ public class TaikhoanAdmin {
     private String email;
     private String pass;
     private String hoten;
+    private String tenhienthi;
     private int sdt;
 
     public TaikhoanAdmin() {
     }
 
-    public TaikhoanAdmin(int id, String email, String pass, String hoten, int sdt) {
+    public TaikhoanAdmin(int id, String email, String pass, String hoten, String tenhienthi, int sdt) {
         this.id = id;
         this.email = email;
         this.pass = pass;
         this.hoten = hoten;
+        this.tenhienthi = tenhienthi;
         this.sdt = sdt;
     }
 
@@ -60,6 +62,14 @@ public class TaikhoanAdmin {
         this.hoten = hoten;
     }
 
+    public String getTenhienthi() {
+        return tenhienthi;
+    }
+
+    public void setTenhienthi(String tenhienthi) {
+        this.tenhienthi = tenhienthi;
+    }
+
     public int getSdt() {
         return sdt;
     }
@@ -67,6 +77,9 @@ public class TaikhoanAdmin {
     public void setSdt(int sdt) {
         this.sdt = sdt;
     }
+    
+
+   
 
    
 }

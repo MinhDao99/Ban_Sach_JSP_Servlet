@@ -24,7 +24,7 @@ import model.TaikhoanAdmin;
 public class tbUserAdmin {
 
     public static int kiemtra(String user, String pass) {
-        Connection conn = database.ketnoi();
+        Connection conn = CSDLAdmin.database.ketnoi();
         if (conn == null) {
             return -1;
         }
@@ -46,18 +46,19 @@ public class tbUserAdmin {
     }
 
     public static int add(TaikhoanAdmin tk) {
-        Connection conn = database.ketnoi();
+        Connection conn = CSDLAdmin.database.ketnoi();
         if (conn == null) {
             return -1;
         }
-        String sql = "INSERT INTO user values(null,?,?,?,?)";
+        String sql = "INSERT INTO user VALUES(NULL,?,?,?,?,?)";
         //String sql="INSERT INTO taikhoan1(Username,Password,Email) values(?,?,?)";
         try {
             PreparedStatement smt = conn.prepareStatement(sql);
             smt.setString(1, tk.getEmail());
             smt.setString(2, tk.getPass());
             smt.setString(3, tk.getHoten());
-            smt.setInt(4, tk.getSdt());
+            smt.setString(4, tk.getTenhienthi());
+            smt.setInt(5, tk.getSdt());
             int kq = smt.executeUpdate();
             if (kq > 0) {
                 return 1;
@@ -98,7 +99,8 @@ public class tbUserAdmin {
         }
 
     }
-     public static int GetUserAdmin(Vector<TaikhoanAdmin> ds) {
+
+    public static int GetUserAdmin(Vector<TaikhoanAdmin> ds) {
         Connection conn = database.ketnoi();
         if (conn == null) {
             return -1;
@@ -141,7 +143,8 @@ public class tbUserAdmin {
         }
 
     }
-      public static int DeleteAdmin(int id) {
+
+    public static int DeleteAdmin(int id) {
         Connection cnn = database.ketnoi();
         if (cnn == null) {
             return -1;//lỗi kết nối CSDL

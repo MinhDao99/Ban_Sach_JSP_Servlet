@@ -63,6 +63,7 @@
                         <th>NGÀY ĐẶT</th>
                         <th>TỔNG TIỀN</th>
                         <th>TRẠNG THÁI</th>
+                        
                     </tr>
                     <%
                         Vector<HoaDon> ds = new Vector<HoaDon>();
@@ -73,7 +74,7 @@
                             dem++;
                     %>
                     <tr>
-                        <td><%=dem%></td>
+                        <td><a href="admin.jsp?module=chitiethoadon&mahd=<%=p.getId()%>"><%=dem%></a></td>
                         <td style="width: 100px"><%=p.getFirstName()%></td>
                         <td style="width: 100px"><%=p.getLastName()%></td>
                         <td style="width: 100px"><%=p.getAddress()%></td>

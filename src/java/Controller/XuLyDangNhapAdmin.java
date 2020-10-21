@@ -3,11 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControllerAdmin;
+package Controller;
 
-import CSDLAdmin.tbUserAdmin;
+import CSDL.tbUser;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +19,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -37,22 +43,24 @@ public class XuLyDangNhapAdmin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String user = request.getParameter("exampleInputEmail");
-            String pass = request.getParameter("exampleInputPassword");
-            tbUserAdmin tb = new tbUserAdmin();
-            int kq = tb.kiemtra(user, pass);
-            if (kq == -1) {
+            String user=request.getParameter("exampleInputEmail");
+            String pass=request.getParameter("exampleInputPassword");
+            tbUser tb= new tbUser();
+            int kq= tb.kiemtra(user, pass);
+             if(kq==-1)
+            {
                 out.println("<h3>Connect failed.Please check your internet connection ^-^</h3>");
-            } else if (kq == 0) {
+            }else if(kq==0){
                 out.println("<h1 style=\"color:yellow;padding-top:20px;\" align=center>Incorrect username or password!. Please retype ^-^</h1>");
-                RequestDispatcher rd = request.getRequestDispatcher("loginadmin.jsp");
+                RequestDispatcher rd= request.getRequestDispatcher("loginadmin.jsp");
                 rd.include(request, response);
-            } else {
-                HttpSession ss = request.getSession();
-                ss.setAttribute("useradmin", user);
+            }else
+            {
+                HttpSession ss= request.getSession();
+                ss.setAttribute("useradmin",user);
                 response.sendRedirect("admin.jsp");
             }
-
+            
         }
     }
 

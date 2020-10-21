@@ -3,25 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ControllerAdmin;
+package Controller;
 
-import CSDLAdmin.tbUserAdmin;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.Product;
 
 /**
  *
  * @author Minh Dao
  */
-@WebServlet(name = "XuLyDangNhapAdmin", urlPatterns = {"/XuLyDangNhapAdmin"})
-public class XuLyDangNhapAdmin extends HttpServlet {
+@WebServlet(name = "XuLythemLoaiSach", urlPatterns = {"/XuLythemLoaiSach"})
+public class XuLythemLoaiSach extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,28 +33,34 @@ public class XuLyDangNhapAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String user = request.getParameter("exampleInputEmail");
-            String pass = request.getParameter("exampleInputPassword");
-            tbUserAdmin tb = new tbUserAdmin();
-            int kq = tb.kiemtra(user, pass);
-            if (kq == -1) {
-                out.println("<h3>Connect failed.Please check your internet connection ^-^</h3>");
-            } else if (kq == 0) {
-                out.println("<h1 style=\"color:yellow;padding-top:20px;\" align=center>Incorrect username or password!. Please retype ^-^</h1>");
-                RequestDispatcher rd = request.getRequestDispatcher("loginadmin.jsp");
-                rd.include(request, response);
+            request.setCharacterEncoding("utf-8");
+            String tenloaisach = request.getParameter("loaisach");
+            String trangthai = request.getParameter("trangthai");
+
+            boolean tbtrangthai;
+
+            if (trangthai==null) {
+                tbtrangthai = false;
             } else {
-                HttpSession ss = request.getSession();
-                ss.setAttribute("useradmin", user);
-                response.sendRedirect("admin.jsp");
+                tbtrangthai = true;
             }
 
+            Product pro = new Product(0, tenloaisach, tbtrangthai);
+            int ketqua = CSDL.tbProduct.SetData(pro);
+            if (ketqua == -1) {
+                out.println("<h3>Lỗi kết nối CSDL</h3>");
+            } else if (ketqua == -2) {
+                out.println("<h3>Lỗi SQL</h3>");
+            } else if (ketqua == 0) {
+                out.println("<h3>Không cập nhật dữ liệu</h3>");
+            } else {
+                request.getRequestDispatcher("admin.jsp").include(request, response);
+            }
         }
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

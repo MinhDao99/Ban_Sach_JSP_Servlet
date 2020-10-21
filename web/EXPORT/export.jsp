@@ -29,6 +29,7 @@
                     <%
                         response.setContentType("application/vnd.ms-excel");
                         response.setHeader("Content-Disposition", "inline;filename=DuLieu.xls");
+                        response.setCharacterEncoding("utf-8");
                         Vector<TaikhoanAdmin> ds = (Vector<TaikhoanAdmin>)session.getAttribute("export");
                         int dem = 0;
                         for (TaikhoanAdmin p : ds) {

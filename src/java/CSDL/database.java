@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CSDLAdmin;
+package CSDL;
 
-import CSDLCustomer.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,9 +16,10 @@ import java.util.logging.Logger;
  * @author Minh Dao
  */
 public class database {
+
     static String user = "root";
     static String pass = "";
-    static String url="jdbc:mysql://localhost:3306/Book_Store?useUnicode=true&characterEncoding=utf8";
+    static String url="jdbc:mysql://localhost:3306/book_store?useUnicode=true&characterEncoding=utf8";
 
     public static Connection ketnoi() {
 

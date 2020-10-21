@@ -50,6 +50,12 @@
                                     <br /><br />
                                 </td>
                             </tr>
+                             <tr>
+                                <td>
+                                    <input  class="hienthi" type="text" name="tenhienthi" id="tenhienthi" placeholder="   Tên hiển thị"/>
+                                    <br /><br />
+                                </td>
+                            </tr>
                            
 
                             <tr>

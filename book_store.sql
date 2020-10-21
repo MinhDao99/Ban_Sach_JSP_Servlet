@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 07, 2020 lúc 08:58 AM
+-- Thời gian đã tạo: Th10 21, 2020 lúc 11:12 AM
 -- Phiên bản máy phục vụ: 10.4.8-MariaDB
 -- Phiên bản PHP: 7.1.32
 
@@ -21,6 +21,60 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `book_store`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitiethoadon`
+--
+
+CREATE TABLE `chitiethoadon` (
+  `id` int(11) NOT NULL,
+  `idhd` int(11) NOT NULL,
+  `idsp` int(11) NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `giamua` varchar(13) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitiethoadon`
+--
+
+INSERT INTO `chitiethoadon` (`id`, `idhd`, `idsp`, `soluong`, `giamua`) VALUES
+(1, 4, 17, 13, '116000'),
+(2, 4, 2, 1, '30000'),
+(3, 5, 2, 1, '30000'),
+(4, 5, 12, 1, '350000'),
+(5, 6, 2, 12, '30000'),
+(6, 6, 5, 1, '18000');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `hoadon`
+--
+
+CREATE TABLE `hoadon` (
+  `id` int(11) NOT NULL,
+  `FirstName` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `LastName` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Address` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `Town` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `Phone` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `Email` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `OrderNote` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `DateOrder` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hoadon`
+--
+
+INSERT INTO `hoadon` (`id`, `FirstName`, `LastName`, `Address`, `Town`, `Phone`, `Email`, `OrderNote`, `DateOrder`, `status`) VALUES
+(4, 'Đào Đức ', 'Minh', 'Ngọc Thụy', 'Hà Nội', '0327614768', 'dao.d.minh.190299@gmail.com', 'Giao hàng lúc 5h chiều', '2020-10-14 14:07:30', 2),
+(5, 'Nguyễn Xuân', 'Mạnh', 'Hà Đông', 'Hà Nội', '651871', 'xuanmanh@gmail.com', 'ko co', '2020-10-14 14:18:50', 1),
+(6, 'Đức', 'Đạt', '19', '2', '0327614768', 'dao.d.minh.190299@gmail.com', 'Khong co', '2020-10-14 14:24:14', 2);
 
 -- --------------------------------------------------------
 
@@ -170,6 +224,20 @@ INSERT INTO `usercustomer` (`id`, `Email`, `Password`, `HoTen`, `sodienthoai`) V
 --
 
 --
+-- Chỉ mục cho bảng `chitiethoadon`
+--
+ALTER TABLE `chitiethoadon`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `uq_hoadon_sp` (`idhd`,`idsp`),
+  ADD KEY `idsp` (`idsp`);
+
+--
+-- Chỉ mục cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `listsanpham`
 --
 ALTER TABLE `listsanpham`
@@ -205,6 +273,18 @@ ALTER TABLE `usercustomer`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `chitiethoadon`
+--
+ALTER TABLE `chitiethoadon`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT cho bảng `hoadon`
+--
+ALTER TABLE `hoadon`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT cho bảng `listsanpham`
 --
 ALTER TABLE `listsanpham`
@@ -237,6 +317,13 @@ ALTER TABLE `usercustomer`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `chitiethoadon`
+--
+ALTER TABLE `chitiethoadon`
+  ADD CONSTRAINT `chitiethoadon_ibfk_1` FOREIGN KEY (`idsp`) REFERENCES `listsanpham` (`ID`),
+  ADD CONSTRAINT `chitiethoadon_ibfk_2` FOREIGN KEY (`idhd`) REFERENCES `hoadon` (`id`);
 
 --
 -- Các ràng buộc cho bảng `listsanpham`
