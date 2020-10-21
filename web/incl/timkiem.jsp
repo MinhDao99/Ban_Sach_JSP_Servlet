@@ -38,7 +38,7 @@
                     <div class="productname"><%=p.getTensp()%></div>
                     <h4 class="price">$<%=format.format(Integer.parseInt(p.getGiaSP()))%></h4>
 
-                    <div class="button_group" ><button class="button add-cart" type="button">Add To Cart</button><button class="button compare" type="button"> <a href="FixDaTa.jsp?id=<%=p.getId()%>"><i class="fa fa-pencil"></i></button><button class="button wishlist" type="button"><a href="XuLyXoa?id=<%=p.getId()%>"><i class="fa fa-ban"></i></a></</button></div>
+                    <div class="button_group" ><button class="button add-cart" type="button"> <a href="XuLyCart?id=<%=p.getId()%>">Add To Cart</a></button></div>
                 </div>
             </div>
             <%

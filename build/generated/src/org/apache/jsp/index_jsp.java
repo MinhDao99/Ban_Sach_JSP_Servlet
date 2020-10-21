@@ -91,8 +91,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </head>\n");
       out.write("\n");
       out.write("    <body>\n");
-      out.write("\n");
-      out.write("        ");
+      out.write("       \n");
+      out.write("            ");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -179,7 +179,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </div>\n");
       out.write("</header>\n");
       out.write("\n");
-      out.write("        ");
+      out.write("            ");
       out.write("\n");
       out.write("\n");
       out.write("\n");
@@ -258,7 +258,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("        ");
-            request.setCharacterEncoding("utf-8");
+request.setCharacterEncoding("utf-8");
 
             String md = "";
             if (request.getParameter("module") != null) {
@@ -304,7 +304,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        ");
 
-        }else if (md.equalsIgnoreCase("checkout")) {
+        } else if (md.equalsIgnoreCase("checkout")) {
         
       out.write("\n");
       out.write("        ");

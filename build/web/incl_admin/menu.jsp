@@ -28,6 +28,15 @@
     </li>
     <li class="treeview">
         <a href="#">
+            <i class="fa fa-table"></i> <span>Quản lý hóa đơn</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="?module=hoaDon"><i class="fa fa-circle-o"></i> Danh sách</a></li>
+        </ul>
+    </li>
+    <li class="treeview">
+        <a href="#">
             <i class="fa fa-table"></i> <span>Tài khoản khách hàng</span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>

@@ -111,6 +111,9 @@
                     <%} else if (module.equalsIgnoreCase("SuaDulieuSP")) {
                     %>
                     <%@include file="incl_admin/SuaDulieuSP.jsp" %>
+                    <%} else if (module.equalsIgnoreCase("hoaDon")) {
+                    %>
+                    <%@include file="incl_admin/hoaDon.jsp" %>
                     <%}else if (module.equalsIgnoreCase("DSTKAdmin")) {
                     %>
                     <%@include file="incl_admin/TKAdmin.jsp" %>

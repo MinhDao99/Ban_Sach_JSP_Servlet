@@ -35,7 +35,7 @@
                     <div class="productname"><%=p.getTensp()%></div>
                     <h4 class="price">$<%=formatter.format(Integer.parseInt(p.getGiaSP()))%></h4>
 
-                    <div class="button_group"><button class="button add-cart" type="button"><a href="XuLyCart?id=<%=p.getId()%>">Add To Cart</a></button></div>
+                    <div class="button_group"><button class="button add-cart" type="button"> <a href="XuLyCart?id=<%=p.getId()%>">Add To Cart</a></button></div>
                 </div>
             </div>
             <%

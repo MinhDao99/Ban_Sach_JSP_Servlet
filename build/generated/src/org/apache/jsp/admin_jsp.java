@@ -183,6 +183,15 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </li>\n");
       out.write("    <li class=\"treeview\">\n");
       out.write("        <a href=\"#\">\n");
+      out.write("            <i class=\"fa fa-table\"></i> <span>Quản lý hóa đơn</span>\n");
+      out.write("            <i class=\"fa fa-angle-left pull-right\"></i>\n");
+      out.write("        </a>\n");
+      out.write("        <ul class=\"treeview-menu\">\n");
+      out.write("            <li><a href=\"admin.jsp?module=DSTKAdmin\"><i class=\"fa fa-circle-o\"></i> Danh sách</a></li>\n");
+      out.write("        </ul>\n");
+      out.write("    </li>\n");
+      out.write("    <li class=\"treeview\">\n");
+      out.write("        <a href=\"#\">\n");
       out.write("            <i class=\"fa fa-table\"></i> <span>Tài khoản khách hàng</span>\n");
       out.write("            <i class=\"fa fa-angle-left pull-right\"></i>\n");
       out.write("        </a>\n");
@@ -198,7 +207,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </a>\n");
       out.write("        <ul class=\"treeview-menu\">\n");
       out.write("            <li><a href=\"admin.jsp?module=DSTKAdmin\"><i class=\"fa fa-circle-o\"></i> Danh sách</a></li>\n");
-      out.write("            <li><a href=\"#\"><i class=\"fa fa-circle-o\"></i> Thêm mới</a></li>\n");
+      out.write("            <li><a href=\"DangKyAdmin.jsp\"><i class=\"fa fa-circle-o\"></i> Thêm mới</a></li>\n");
       out.write("\n");
       out.write("\n");
       out.write("        </ul>\n");
@@ -302,6 +311,11 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
     }
                     
       out.write("\n");
+      out.write("                    <tr>\n");
+      out.write("                      <td colspan=\"4\" align=\"center\"><a href=\"EXPORT/export.jsp\">Export</a></td>\n");
+      out.write("\n");
+      out.write("                        \n");
+      out.write("                    </tr>\n");
       out.write("                </table>\n");
       out.write("            </div><!-- /.box-body -->\n");
       out.write("        </div><!-- /.box -->\n");
@@ -967,12 +981,19 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <a href=\"XyLyXoaUserAdmin?id=");
       out.print(p.getId());
       out.write("\" onclick=\"return confirm('Chắc chắn xóa');\"><input type=\"submit\" name=\"delete\" id=\"delete\" value=\"Xóa\"></a>\n");
+      out.write("                            \n");
       out.write("                        </th>\n");
       out.write("                    </tr>\n");
       out.write("                    ");
     }
+                        session.setAttribute("export", ds);
                     
       out.write("\n");
+      out.write("                  <tr>\n");
+      out.write("                      <td colspan=\"6\" align=\"center\"><a href=\"EXPORT/export.jsp\">Export</a></td>\n");
+      out.write("\n");
+      out.write("                        \n");
+      out.write("                    </tr>\n");
       out.write("                </table>\n");
       out.write("            </div><!-- /.box-body -->\n");
       out.write("        </div><!-- /.box -->\n");

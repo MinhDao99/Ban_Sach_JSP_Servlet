@@ -38,13 +38,13 @@
     </head>
 
     <body>
+       
+            <%@include file="incl/header.jsp" %>
+            <%@include file="incl/hero.jsp" %>
 
-        <%@include file="incl/header.jsp" %>
-        <%@include file="incl/hero.jsp" %>
 
 
-
-        <%            request.setCharacterEncoding("utf-8");
+        <%request.setCharacterEncoding("utf-8");
 
             String md = "";
             if (request.getParameter("module") != null) {
@@ -70,7 +70,7 @@
         %>
         <jsp:include page="incl/timkiem.jsp"></jsp:include>
         <%
-        }else if (md.equalsIgnoreCase("checkout")) {
+        } else if (md.equalsIgnoreCase("checkout")) {
         %>
         <jsp:include page="checkout.jsp"></jsp:include>
         <%

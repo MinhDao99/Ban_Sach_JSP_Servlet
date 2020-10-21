@@ -60,12 +60,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <%                                            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
-                                            if (cart == null) {
+                                        <% 
+                                            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
+                                            if (cart == null||cart.isEmpty()) {
                                         %>
                                         <tr>
                                             <td class="shoping__cart__item">
-                                                <img src="img/cart/cart-1.jpg" alt="">
+                                                <img src="Uploads/noimage.jpg" alt="">
                                                 <h5>No product in cart</h5>
                                             </td>
                                             <%
