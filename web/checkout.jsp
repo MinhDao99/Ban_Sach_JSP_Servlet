@@ -7,7 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
-
     <head>
         <meta charset="UTF-8">
         <meta name="description" content="Ogani Template">
@@ -28,16 +27,44 @@
         <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <script language="javascript">
+            function   kiemtra() {
+                alert("123123");
+                f = document.f1;
+                hoten = f.FirstName.value;
+                if (hoten == "") {
+                    alert("Bạn chưa nhập họ tên");
+                    document.getElementById("loi_hoten").innerHTML = "Bạn chưa nhập họ tên";
+                    //f.tHoten.select();
+                    return false;
+                } else
+                {
+                    document.getElementById("loi_hoten").innerHTML = "";
+                }
+//                tPhone = f1.Phone.value;
+//                re_phone = /^\d{10,11}$/;
+//                if (re_dienthoai.test(tPhone) == false)
+//                {
+//                    document.getElementById("loi_dienthoai").innerHTML = "Bạn nhập điện thoại sai";
+//                    f.Phone.select();
+//                    return false;
+//                } else
+//                {
+//                    document.getElementById("loi_dienthoai").innerHTML = "";
+//                }
+            }
+
+        </script>
     </head>
 
     <body>
         <!-- Checkout Section Begin -->
         <section class="checkout spad">
             <div class="container">
-              
+
                 <div class="checkout__form">
                     <h4>Thông tin hóa đơn</h4>
-                    <form action="Cart_checkout" method="post">
+                    <form action="Cart_checkout" method="post" id="f1" name="f1">
                         <div class="row">
                             <div class="col-lg-8 col-md-6">
                                 <div class="row">
@@ -45,6 +72,8 @@
                                         <div class="checkout__input">
                                             <p>Fist Name<span>*</span></p>
                                             <input type="text" name="FirstName" id="FirstName">
+                                            <br>
+                                            <span id="loi_hoten" class="baoloi"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -54,22 +83,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="checkout__input">
                                     <p>Address<span>*</span></p>
                                     <input type="text" placeholder="Street Address" name="Address" id="Address" class="checkout__input__add">
-                                    
+
                                 </div>
                                 <div class="checkout__input">
                                     <p>Town/City<span>*</span></p>
                                     <input type="text" name="Town" id="Town">
                                 </div>
-                                
+
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="checkout__input">
                                             <p>Phone<span>*</span></p>
                                             <input type="text" name="Phone" id="Phone">
+                                            <span id="loi_dienthoai" class="baoloi"></span>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -79,7 +109,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="checkout__input">
                                     <p>Order notes<span>*</span></p>
                                     <input type="text" name="Note" id="Note"
@@ -97,8 +127,8 @@
                                     </ul>
                                     <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
                                     <div class="checkout__order__total">Total <span>$750.99</span></div>
-                                    
-                                    <button type="submit" class="site-btn">PLACE ORDER</button>
+
+                                    <button type="submit" class="site-btn" onclick="return kiemtra();">PLACE ORDER</button>
                                 </div>
                             </div>
                         </div>

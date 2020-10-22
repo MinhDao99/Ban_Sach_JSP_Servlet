@@ -113,6 +113,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
+      out.write("   \n");
       out.write("    <head>\n");
       out.write("        <meta charset=\"UTF-8\">\n");
       out.write("        <title>Quản trị admin</title>\n");
@@ -699,7 +700,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</div>");
       out.write("\n");
       out.write("                    ");
-}else if (module.equalsIgnoreCase("chitiethoadon")) {
+} else if (module.equalsIgnoreCase("chitiethoadon")) {
                     
       out.write("\n");
       out.write("                    ");
@@ -786,7 +787,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</div>");
       out.write("\n");
       out.write("                    ");
-}else if (module.equalsIgnoreCase("DSTKKH")) {
+} else if (module.equalsIgnoreCase("DSTKKH")) {
                     
       out.write("\n");
       out.write("                    ");
@@ -1157,7 +1158,7 @@ public final class admin_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</div>");
       out.write("\n");
       out.write("                    ");
-}else if (module.equalsIgnoreCase("DSTKAdmin")) {
+} else if (module.equalsIgnoreCase("DSTKAdmin")) {
                     
       out.write("\n");
       out.write("                    ");

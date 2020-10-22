@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+   
     <head>
         <meta charset="UTF-8">
         <title>Quản trị admin</title>
@@ -105,10 +106,10 @@
                     <%} else if (module.equalsIgnoreCase("SuaDulieu")) {
                     %>
                     <%@include file="incl_admin/SuaDuLieuLoaiSP.jsp" %>
-                    <%}else if (module.equalsIgnoreCase("chitiethoadon")) {
+                    <%} else if (module.equalsIgnoreCase("chitiethoadon")) {
                     %>
                     <%@include file="incl_admin/chitiethoadon.jsp" %>
-                    <%}else if (module.equalsIgnoreCase("DSTKKH")) {
+                    <%} else if (module.equalsIgnoreCase("DSTKKH")) {
                     %>
                     <%@include file="incl_admin/TKKH.jsp" %>
                     <%} else if (module.equalsIgnoreCase("SuaDulieuSP")) {
@@ -117,7 +118,7 @@
                     <%} else if (module.equalsIgnoreCase("hoaDon")) {
                     %>
                     <%@include file="incl_admin/hoaDon.jsp" %>
-                    <%}else if (module.equalsIgnoreCase("DSTKAdmin")) {
+                    <%} else if (module.equalsIgnoreCase("DSTKAdmin")) {
                     %>
                     <%@include file="incl_admin/TKAdmin.jsp" %>
                     <%}
