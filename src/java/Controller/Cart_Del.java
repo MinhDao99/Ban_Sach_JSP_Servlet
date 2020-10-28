@@ -5,22 +5,22 @@
  */
 package Controller;
 
-import CSDLCustomer.tbUser;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Taikhoan;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Minh Dao
  */
-@WebServlet(name = "XuLyDangKyTaiKhoan", urlPatterns = {"/XuLyDangKyTaiKhoan"})
-public class XuLyDangKyTaiKhoan extends HttpServlet {
+@WebServlet(name = "Cart_Del", urlPatterns = {"/Cart_Del"})
+public class Cart_Del extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,28 +35,18 @@ public class XuLyDangKyTaiKhoan extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String Email = request.getParameter("email");
-            String Pass = request.getParameter("Password");
-            String Repass = request.getParameter("nhaplaimatkhau");
-            String hoten = request.getParameter("hoten");
-            String sdt = request.getParameter("sdt");
-            if (Repass.equalsIgnoreCase(Pass) == false) {
-                out.println("Không trùng password");
-            } else {
-                tbUser tb = new tbUser();
-                Taikhoan tk = new Taikhoan(0,Email, Pass, hoten, Integer.parseInt(sdt));
-                int kq = tb.add(tk);
-                if (kq == -1) {
-                    out.println("<h3> lỗi kết nối csdl</h3>");
-                } else if (kq == -2) {
-                    out.println("<h3> lỗi SQL</h3>");
-                } else if (kq == 0) {
-                    out.println("<h3> không thêm được</h3>");
-                } else {
-                    request.getRequestDispatcher("login.jsp").include(request, response);
+            /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
+            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
+            if (cart != null) {
+                int idxoa = Integer.parseInt(request.getParameter("id"));
+                if(cart.containsKey(idxoa)==true)
+                {
+                    cart.remove(idxoa);
                 }
+                session.setAttribute("cart", cart);
+                response.sendRedirect("index.jsp?module=cart");
             }
-
         }
     }
 

@@ -46,7 +46,7 @@ public class XuLyThemTKAdmin extends HttpServlet {
                 out.println("Không trùng password");
             } else {
                 tbUserAdmin tb = new tbUserAdmin();
-                TaikhoanAdmin tk = new TaikhoanAdmin(0, Email, Pass, hoten,tenhienthi, Integer.parseInt(sdt));
+                TaikhoanAdmin tk = new TaikhoanAdmin(0, Email, Pass, hoten,tenhienthi, sdt);
                 int kq = tb.add(tk);
                 if (kq == -1) {
                     out.println("<h3> lỗi kết nối csdl</h3>");
@@ -55,7 +55,7 @@ public class XuLyThemTKAdmin extends HttpServlet {
                 } else if (kq == 0) {
                     out.println("<h3> không thêm được</h3>");
                 } else {
-                    request.getRequestDispatcher("loginadmin.jsp").include(request, response);
+                    request.getRequestDispatcher("admin.jsp?module=DSTKAdmin").include(request, response);
                 }
             }
         }

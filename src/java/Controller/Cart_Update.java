@@ -5,21 +5,22 @@
  */
 package Controller;
 
-import CSDL.tbProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Minh Dao
  */
-@WebServlet(name = "DoiTrangThaiLoaiSP", urlPatterns = {"/DoiTrangThaiLoaiSP"})
-public class DoiTrangThaiLoaiSP extends HttpServlet {
+@WebServlet(name = "Cart_Update", urlPatterns = {"/Cart_Update"})
+public class Cart_Update extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,21 +35,17 @@ public class DoiTrangThaiLoaiSP extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            int id;
-            if (request.getParameter("id") == null || Tientich.isInteger(request.getParameter("id"))==false) {
-                out.println("Sai id");
-            } else {
-                id = Integer.parseInt(request.getParameter("id"));
-                String tt = request.getParameter("tt");
-                if (tt.equals("0")) {
-                    tt = "1";
-                } else {
-                    tt = "0";
+            HttpSession session = request.getSession();
+            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
+            
+            if (cart != null) {
+                for (int id : cart.keySet()) {
+                    int soluongmoi = Integer.parseInt(request.getParameter("soluongmoi_"+id));
+                    cart.put(id, soluongmoi);
+                        
                 }
-                int kq = tbProduct.SwapStatus(id, "status", tt,"products");
-                if (kq > 0) {
-                    request.getRequestDispatcher("admin.jsp?module=loaisach").include(request, response);
-                }
+                session.setAttribute("cart", cart);
+                response.sendRedirect("index.jsp?module=cart");
             }
         }
     }

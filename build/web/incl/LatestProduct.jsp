@@ -16,8 +16,22 @@
                 <h4>Hot books</h4>
                 <div class="row">
                     <%
+                        int first = 0, last = 0, pages = 1;
+                        if (request.getParameter("pages") != null) {
+                            pages = (int) Integer.parseInt(request.getParameter("pages"));
+                        }
+
+                        int total = new tbProduct().getCount();
                         Vector<ListProduct> dsSP = new Vector<ListProduct>();
-                        tbProduct.LayDuLieuACus(dsSP);
+                        if (total <= 8) {
+                            first = 0;
+                            last = total;
+                        } else {
+                            first = (pages - 1) * 8;
+                            last = 8;
+                        }
+                        //  tbProduct.LayDuLieuACus(dsSP);
+                        tbProduct.LayDuLieuACus(dsSP, first, last);
                         DecimalFormat formatter = new DecimalFormat("###,###,###");
                         for (ListProduct p : dsSP) {
                             String img = "noimage.jpg";
@@ -32,7 +46,7 @@
                             <div class="thumbnail"><a href="index.jsp?module=detail&id=<%=p.getIdproducts()%>&masach=<%=p.getId()%>"><img style="height: 200px;width: 100%" src="Uploads/<%=img%>" alt="Product Name"></a></div>
                             <div class="productname"><%=p.getTensp()%></div>
                             <h4 class="price">$<%=formatter.format(Integer.parseInt(p.getGiaSP()))%></h4>
-                            <div class="button_group"><button class="button add-cart" type="button"><a href="XuLyCart?id=<%=p.getId()%>">Add To Cart</a></button></div>
+                            <div class="button_group"><button class="button add-cart" type="button"><a href="Cart_add?id=<%=p.getId()%>">Add To Cart</a></button></div>
 
                         </div>
                     </div>
@@ -41,8 +55,10 @@
 
                     %>
                 </div>
+                    <jsp:include page="Paganition.jsp"></jsp:include>
             </div>
 
         </div>
     </div>
+
 </section>

@@ -33,12 +33,13 @@
         <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
         <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        
     </head>
 
     <body>
         <%
             DecimalFormat formatter = new DecimalFormat("###,###,###");
-            int tongtien = 0;
+            double tongtien = 0;
 
         %>
         <section class="shopingcart spad">
@@ -46,7 +47,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="shoping__cart__table">
-                            <form name="f1" id="f1" method="post" action="XuLyUpdateCart">
+                            <form name="f1" id="f1" method="post" action="Cart_Update">
 
                                 <table>
 
@@ -60,9 +61,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <% 
-                                            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
-                                            if (cart == null||cart.isEmpty()) {
+                                        <%                                            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
+                                            if (cart == null || cart.isEmpty()) {
                                         %>
                                         <tr>
                                             <td class="shoping__cart__item">
@@ -82,7 +82,7 @@
                                             %>
                                         </tr>
                                         <tr>
-                                         
+
                                             <td class="shoping__cart__item">
                                                 <img src="Uploads/<%=pro.getHinhAnh()%>" height="100px" width="100px" alt="">
                                                 <h5><%=pro.getTensp()%></h5>
@@ -101,7 +101,7 @@
                                                 <%=formatter.format(tien)%>
                                             </td>
                                             <td >
-                                                <span> <a href="XuLyXoaCart?id=<%=id%>"> Xóa</a></span>
+                                                <span> <a href="Cart_Del?id=<%=id%>"> Xóa</a></span>
                                             </td>
                                         </tr>
 
@@ -134,8 +134,6 @@
                     <div class="col-lg-12">
                         <div class="shoping__cart__btns">
                             <a href="index.jsp?" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-
-
                         </div>
                     </div>
 

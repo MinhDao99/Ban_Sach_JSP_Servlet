@@ -34,6 +34,7 @@
                         <th>Email</th>
                         <th>Password</th>
                         <th>Họ tên</th>
+                        <th>Tên hiển thị</th>
                         <th>Số điện thoại </th>
                         <th>Thao tác</th>
 
@@ -52,22 +53,28 @@
                         <td style="width: 100px"><%=p.getEmail()%></td>
                         <td style="width: 500px"><%=p.getPass()%></td>
                         <td><%=p.getHoten()%></td>
+                        <td><%=p.getTenhienthi()%></td>
+
                         <td><%=p.getSdt()%></td>
 
                         <th>
                             <a href="XyLyXoaUserAdmin?id=<%=p.getId()%>" onclick="return confirm('Chắc chắn xóa');"><input type="submit" name="delete" id="delete" value="Xóa"></a>
-                            
+
                         </th>
                     </tr>
                     <%    }
                         session.setAttribute("export", ds);
                     %>
-                  <tr>
-                      <td colspan="6" align="center"><a href="EXPORT/export.jsp">Export</a></td>
+                    <tr>
+                        <td colspan="6" align="center"><a href="EXPORT/ex_AccountAdmin.jsp">Export</a></td>
 
-                        
+
                     </tr>
                 </table>
+                <form action="importAccountAdmin" method="post" enctype="multipart/form-data">
+                    <input type="file" name="filename">
+                    <input type="submit" value="import">
+                </form>
             </div><!-- /.box-body -->
         </div><!-- /.box -->
     </div>

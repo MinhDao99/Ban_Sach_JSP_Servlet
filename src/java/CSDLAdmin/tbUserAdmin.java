@@ -58,7 +58,7 @@ public class tbUserAdmin {
             smt.setString(2, tk.getPass());
             smt.setString(3, tk.getHoten());
             smt.setString(4, tk.getTenhienthi());
-            smt.setInt(5, tk.getSdt());
+            smt.setString(5, tk.getSdt());
             int kq = smt.executeUpdate();
             if (kq > 0) {
                 return 1;
@@ -115,7 +115,8 @@ public class tbUserAdmin {
                 tk.setEmail(rs.getString("Email"));
                 tk.setPass(rs.getString("Password"));
                 tk.setHoten(rs.getString("HoTen"));
-                tk.setSdt(rs.getInt("sodienthoai"));
+                tk.setTenhienthi(rs.getString("TenHienThi"));
+                tk.setSdt(rs.getString("SoDienThoai"));
                 ds.add(tk);
             }
             return ds.size();
@@ -160,5 +161,37 @@ public class tbUserAdmin {
             return -2;
         }
 
+    }
+
+    public void insertListBooks(Vector<TaikhoanAdmin> ds) {
+        try {
+            Connection conn = CSDLAdmin.database.ketnoi();
+            // Sét tự động commit false, để chủ động điều khiển
+            conn.setAutoCommit(false);
+
+            String sql = "INSERT INTO user(Email, Password, HoTen,TenHienThi,SoDienThoai) VALUES (?, ?, ?,?,?)";
+            PreparedStatement smt = conn.prepareStatement(sql);
+
+            for (TaikhoanAdmin p : ds) {
+                smt.setString(1, p.getEmail());
+                smt.setString(2, p.getPass());
+                smt.setString(3, p.getHoten());
+                smt.setString(4, p.getTenhienthi());
+                smt.setString(5, p.getSdt());
+                smt.addBatch();
+            }
+
+            smt.executeBatch();
+
+            // Gọi commit() để commit giao dịch với DB
+            conn.commit();
+
+            System.out.println("Record is inserted into BOOK table!");
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
     }
 }

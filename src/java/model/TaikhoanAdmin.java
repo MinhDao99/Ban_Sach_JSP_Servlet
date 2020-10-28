@@ -16,12 +16,12 @@ public class TaikhoanAdmin {
     private String pass;
     private String hoten;
     private String tenhienthi;
-    private int sdt;
+    private String sdt;
 
     public TaikhoanAdmin() {
     }
 
-    public TaikhoanAdmin(int id, String email, String pass, String hoten, String tenhienthi, int sdt) {
+    public TaikhoanAdmin(int id, String email, String pass, String hoten, String tenhienthi, String sdt) {
         this.id = id;
         this.email = email;
         this.pass = pass;
@@ -70,11 +70,13 @@ public class TaikhoanAdmin {
         this.tenhienthi = tenhienthi;
     }
 
-    public int getSdt() {
+    public String getSdt() {
         return sdt;
     }
 
-    public void setSdt(int sdt) {
+ 
+
+    public void setSdt(String sdt) {
         this.sdt = sdt;
     }
     

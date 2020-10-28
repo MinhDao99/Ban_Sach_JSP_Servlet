@@ -5,27 +5,22 @@
  */
 package Controller;
 
-import CSDL.tbProduct;
+import CSDLCustomer.tbUser;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ListProduct;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import model.Taikhoan;
 
 /**
  *
  * @author Minh Dao
  */
-@WebServlet(name = "XuLySuaSP", urlPatterns = {"/XuLySuaSP"})
-public class XuLySuaSP extends HttpServlet {
+@WebServlet(name = "user_Register", urlPatterns = {"/user_Register"})
+public class user_Register extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,47 +34,32 @@ public class XuLySuaSP extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
-        String contentType = request.getContentType();
         try (PrintWriter out = response.getWriter()) {
-            if (contentType.indexOf("multipart/form-data") >= 0) {
+            String Email = request.getParameter("email");
+            String Pass = request.getParameter("Password");
+            String Repass = request.getParameter("nhaplaimatkhau");
+            String hoten = request.getParameter("hoten");
+            String sdt = request.getParameter("sdt");
 
-                ServletFileUpload upload = Uploads.getUploads(request);
-                List fileItems = upload.parseRequest(request);
-
-                int id = Integer.parseInt(Tientich.getInput(fileItems, "id", Uploads.filePath));
-
-                String Tensach = Tientich.getInput(fileItems, "Ten", Uploads.filePath);
-                String GiaSach = Tientich.getInput(fileItems, "Gia", Uploads.filePath);
-                String HinhAnh = Tientich.getInput(fileItems, "HinhAnh", Uploads.filePath);
-                String HinhAnhHienTai = Tientich.getInput(fileItems, "tAnhHientai", Uploads.filePath);
-                String MoTa = Tientich.getInput(fileItems, "MoTa", Uploads.filePath);
-                String NhomSach = Tientich.getInput(fileItems, "Nhom", Uploads.filePath);
-                String trangthai = Tientich.getInput(fileItems, "trangthai", HinhAnh);
-
-                boolean tbtrangthai;
-                if (trangthai == null) {
-                    tbtrangthai = false;
+            if (Repass.equalsIgnoreCase(Pass) == false) {
+                out.println("Không trùng password");
+            } else if (Email.trim() != "" && Pass.trim() != "" && hoten.trim() != "" && sdt.trim() != "") {
+                tbUser tb = new tbUser();
+                Taikhoan tk = new Taikhoan(0, Email, Pass, hoten, Integer.parseInt(sdt));
+                int kq = tb.add(tk);
+                if (kq == -1) {
+                    out.println("<h3> lỗi kết nối csdl</h3>");
+                } else if (kq == -2) {
+                    out.println("<h3> lỗi SQL</h3>");
+                } else if (kq == 0) {
+                    out.println("<h3> không thêm được</h3>");
                 } else {
-                    tbtrangthai = true;
+                    response.sendRedirect("login.jsp");
                 }
-                if (HinhAnh.equals("")) {
-                    HinhAnh = HinhAnhHienTai;
-
-                }
-                ListProduct p = new ListProduct(id, Tensach, GiaSach, HinhAnh, MoTa, id, tbtrangthai);
-
-                int kq = tbProduct.FixSP(id, p);
-
-                if (kq > 0) {
-
-                    request.getRequestDispatcher("admin.jsp?module=DSSP").include(request, response);
-                }
+            } else {
+                out.println("<h3> không thêm được</h3>");
             }
-        } catch (FileUploadException ex) {
-            Logger.getLogger(XuLySuaSP.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(XuLySuaSP.class.getName()).log(Level.SEVERE, null, ex);
+
         }
     }
 

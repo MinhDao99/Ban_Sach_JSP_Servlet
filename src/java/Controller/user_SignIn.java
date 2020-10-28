@@ -5,22 +5,29 @@
  */
 package Controller;
 
-import CSDL.tbProduct;
+import CSDLCustomer.tbUser;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Product;
+import javax.servlet.http.HttpSession;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
  * @author Minh Dao
  */
-@WebServlet(name = "XuLySuaLoaiSP", urlPatterns = {"/XuLySuaLoaiSP"})
-public class XuLySuaLoaiSP extends HttpServlet {
+@WebServlet(name = "user_SignIn", urlPatterns = {"/user_SignIn"})
+public class user_SignIn extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,27 +41,29 @@ public class XuLySuaLoaiSP extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("utf-8");
         try (PrintWriter out = response.getWriter()) {
-            int id=Integer.parseInt(request.getParameter("id"));
-            String ten = request.getParameter("Ten");
-            String trangthai = request.getParameter("trangthai");
-            boolean tbtt;
-            if (trangthai == null) {
-                tbtt = false;
-            } else {
-                tbtt = true;
-            }
-            Product p= new Product(id, ten, tbtt);
-            int kq=tbProduct.FixLoaiSP(id,p);
-            if(kq>0)
+            String user=request.getParameter("exampleInputEmail");
+            String pass=request.getParameter("exampleInputPassword");
+            tbUser tb= new tbUser();
+            int kq= tb.kiemtra(user, pass);
+             if(kq==-1)
             {
-                request.getRequestDispatcher("admin.jsp?module=loaisach").include(request, response);
+                out.println("<h3>Connect failed.Please check your internet connection ^-^</h3>");
+            }else if(kq==0){
+                out.println("<h1 style=\"color:yellow;padding-top:20px;\" align=center>Incorrect username or password!. Please retype ^-^</h1>");
+                RequestDispatcher rd= request.getRequestDispatcher("login.jsp");
+                rd.include(request, response);
+            }else
+            {
+                HttpSession ss= request.getSession();
+                ss.setAttribute("user",user);
+                response.sendRedirect("index.jsp");
             }
+            
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

@@ -5,29 +5,22 @@
  */
 package Controller;
 
-import CSDL.tbUser;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
  * @author Minh Dao
  */
-@WebServlet(name = "XuLyDangNhapAdmin", urlPatterns = {"/XuLyDangNhapAdmin"})
-public class XuLyDangNhapAdmin extends HttpServlet {
+@WebServlet(name = "Cart_add", urlPatterns = {"/Cart_add"})
+public class Cart_add extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,30 +34,30 @@ public class XuLyDangNhapAdmin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String user=request.getParameter("exampleInputEmail");
-            String pass=request.getParameter("exampleInputPassword");
-            tbUser tb= new tbUser();
-            int kq= tb.kiemtra(user, pass);
-             if(kq==-1)
-            {
-                out.println("<h3>Connect failed.Please check your internet connection ^-^</h3>");
-            }else if(kq==0){
-                out.println("<h1 style=\"color:yellow;padding-top:20px;\" align=center>Incorrect username or password!. Please retype ^-^</h1>");
-                RequestDispatcher rd= request.getRequestDispatcher("loginadmin.jsp");
-                rd.include(request, response);
-            }else
-            {
-                HttpSession ss= request.getSession();
-                ss.setAttribute("useradmin",user);
-                response.sendRedirect("admin.jsp");
-            }
+            HttpSession session = request.getSession();
+            HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
             
+            if (cart == null) {
+                cart = new HashMap<Integer, Integer>();
+            }
+            int id = Integer.parseInt(request.getParameter("id"));
+            if (cart.containsKey(id) == false) {
+                cart.put(id, 1);
+            } else {
+                int soluong = cart.get(id);
+                soluong++;
+                cart.put(id, soluong);
+
+            }
+            session.setAttribute("cart", cart);
+         
+
+            response.sendRedirect("index.jsp?module=cart");
         }
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

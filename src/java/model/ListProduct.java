@@ -88,6 +88,7 @@ public class ListProduct {
         return idproducts;
     }
 
+
     public void setIdproducts(int idproducts) {
         this.idproducts = idproducts;
     }

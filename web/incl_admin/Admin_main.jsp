@@ -53,7 +53,7 @@
                     <%    }
                     %>
                     <tr>
-                      <td colspan="4" align="center"><a href="EXPORT/export.jsp">Export</a></td>
+                      <td colspan="4" align="center"><a href="EXPORT/ex_Category.jsp">Export</a></td>
 
                         
                     </tr>

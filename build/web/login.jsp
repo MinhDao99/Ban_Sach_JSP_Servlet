@@ -46,7 +46,7 @@
                                         <div class="text-center">
                                             <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                         </div>
-                                        <form class="user" method="post" action="XuLyDangNhap">
+                                        <form class="user" method="post" action="user_SignIn">
                                             <div class="form-group">
                                                 <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
                                             </div>

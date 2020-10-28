@@ -55,7 +55,7 @@ public class tbUser {
             smt.setString(2, tk.getPass());
             smt.setString(3, tk.getHoten());
             smt.setString(4, tk.getTenhienthi());
-            smt.setInt(5, tk.getSdt());
+            smt.setString(5, tk.getSdt());
            
 
             int kq = smt.executeUpdate();

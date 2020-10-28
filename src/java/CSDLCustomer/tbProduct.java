@@ -172,12 +172,16 @@ public class tbProduct {
         }
 
     }
-    public static int LayDuLieuACus(Vector<ListProduct> dssp) {
-        Connection conn =database.ketnoi();
 
-        String sql = "SELECT * FROM listsanpham";
+    public static int LayDuLieuACus(Vector<ListProduct> dssp, int a, int b) {
+        Connection conn = database.ketnoi();
+
+        String sql = "SELECT * FROM listsanpham WHERE status=1 LIMIT ?,?";
         try {
             PreparedStatement smt = conn.prepareStatement(sql);
+            smt.setInt(1, a);
+            smt.setInt(2, b);
+
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {//duyệt từng bản ghi kết quả select
                 ListProduct sp = new ListProduct();
@@ -196,6 +200,23 @@ public class tbProduct {
 
         }
         return dssp.size();
+    }
+
+    public int getCount() {
+        Connection conn = CSDLCustomer.database.ketnoi();
+        Vector<ListProduct> list = new Vector();
+        String sql = "SELECT count(ID) FROM listsanpham";
+        int count = 0;
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 
 }

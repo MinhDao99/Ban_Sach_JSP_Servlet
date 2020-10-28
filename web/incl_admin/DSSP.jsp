@@ -67,8 +67,14 @@
                             <a href="DoiTrangThaiSP?id=<%=p.getId()%>&tt=<%=p.gettrangthai()%>"><input type="submit" name="fix" id="fix" value="Đổi trạng thái" ></a>
                         </th>
                     </tr>
+                  
                     <%    }
                     %>
+                      <tr>
+                        <td colspan="8" align="center"><a href="EXPORT/ex_Products.jsp">export</a>
+                            
+                        </td>
+                    </tr>
                 </table>
             </div><!-- /.box-body -->
         </div><!-- /.box -->
