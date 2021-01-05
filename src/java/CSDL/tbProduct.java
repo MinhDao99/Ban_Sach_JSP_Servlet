@@ -13,9 +13,9 @@ import java.sql.Statement;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.ImageSlide;
-import model.ListProduct;
-import model.Product;
+import model.clsImageSlide;
+import model.clsProduct;
+import model.clsCatagory;
 
 /**
  *
@@ -23,7 +23,7 @@ import model.Product;
  */
 public class tbProduct {
 
-    public static int GetProduct(Vector<Product> ds) {
+    public static int GetProduct(Vector<clsCatagory> ds) {
         Connection conn = CSDL.database.ketnoi();
         if (conn == null) {
             return -1;
@@ -33,7 +33,7 @@ public class tbProduct {
             Statement smt = conn.createStatement();
             ResultSet rs = smt.executeQuery(sql);
             while (rs.next()) {
-                Product pro = new Product();
+                clsCatagory pro = new clsCatagory();
                 pro.setId(rs.getInt("id"));
                 pro.setTen(rs.getString("TenSanPham"));
                 ds.add(pro);
@@ -46,7 +46,7 @@ public class tbProduct {
 
     }
 
-    public static int SetData(Product product) {
+    public static int SetData(clsCatagory product) {
         Connection conn = CSDL.database.ketnoi();
         if (conn == null) {
             return -1;
@@ -66,7 +66,7 @@ public class tbProduct {
 
     }
 
-    public static int SetDataProductList(ListProduct p) {
+    public static int SetDataProductList(clsProduct p) {
         Connection conn = CSDL.database.ketnoi();
         if (conn == null) {
             return -1;
@@ -94,7 +94,7 @@ public class tbProduct {
 
     }
 
-    public static int LayDuLieu(int id, Vector<ListProduct> dssp) {
+    public static int LayDuLieu(int id, Vector<clsProduct> dssp) {
         Connection conn = CSDL.database.ketnoi();
 
         String sql = "SELECT * FROM listsanpham WHERE idproducts='" + id + "'AND status=1";
@@ -102,7 +102,7 @@ public class tbProduct {
             PreparedStatement smt = conn.prepareStatement(sql);
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {//duyệt từng bản ghi kết quả select
-                ListProduct sp = new ListProduct();
+                clsProduct sp = new clsProduct();
                 sp.setId(rs.getInt("ID"));
                 sp.setTensp(rs.getString("TenSP"));
                 sp.setGiaSP(rs.getString("GiaSP"));
@@ -119,7 +119,7 @@ public class tbProduct {
         return dssp.size();
     }
 
-        public static int LayDuLieuAdmin(Vector<ListProduct> dssp) {
+        public static int LayDuLieuAdmin(Vector<clsProduct> dssp) {
         Connection conn = CSDL.database.ketnoi();
 
         String sql = "SELECT * FROM listsanpham";
@@ -127,7 +127,7 @@ public class tbProduct {
             PreparedStatement smt = conn.prepareStatement(sql);
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {//duyệt từng bản ghi kết quả select
-                ListProduct sp = new ListProduct();
+                clsProduct sp = new clsProduct();
                 sp.setId(rs.getInt("ID"));
                 sp.setTensp(rs.getString("TenSP"));
                 sp.setGiaSP(rs.getString("GiaSP"));
@@ -145,7 +145,7 @@ public class tbProduct {
         return dssp.size();
     }
 
-    public static int FixLoaiSP(int id, Product pro) {
+    public static int FixLoaiSP(int id, clsCatagory pro) {
         Connection cnn = CSDL.database.ketnoi();
         if (cnn == null) {
             return -1;//lỗi kết nối CSDL
@@ -182,7 +182,7 @@ public class tbProduct {
 
     }
 
-    public static int GetAllProduct(Vector<ImageSlide> ds) {
+    public static int GetAllProduct(Vector<clsImageSlide> ds) {
         Connection conn = CSDL.database.ketnoi();
         if (conn == null) {
             return -1;
@@ -192,7 +192,7 @@ public class tbProduct {
             Statement smt = conn.createStatement();
             ResultSet rs = smt.executeQuery(sql);
             while (rs.next()) {
-                ImageSlide pro = new ImageSlide();
+                clsImageSlide pro = new clsImageSlide();
                 pro.setId(rs.getInt("id"));
                 pro.setHinhAnh(rs.getString("HinhAnh"));
                 ds.add(pro);
@@ -205,7 +205,7 @@ public class tbProduct {
 
     }
 
-    public static int GetDetail(int id, Vector<ListProduct> dssp) {
+    public static int GetDetail(int id, Vector<clsProduct> dssp) {
         Connection conn = CSDL.database.ketnoi();
 
         String sql = "SELECT * FROM listsanpham WHERE ID='" + id + "'";
@@ -213,7 +213,7 @@ public class tbProduct {
             PreparedStatement smt = conn.prepareStatement(sql);
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {//duyệt từng bản ghi kết quả select
-                ListProduct sp = new ListProduct();
+                clsProduct sp = new clsProduct();
                 sp.setTensp(rs.getString("TenSP"));
                 sp.setGiaSP(rs.getString("GiaSP"));
                 sp.setHinhAnh(rs.getString("HinhAnh"));
@@ -229,7 +229,7 @@ public class tbProduct {
         return dssp.size();
     }
 
-    public static int Search(String name, Vector<ListProduct> ds) {
+    public static int Search(String name, Vector<clsProduct> ds) {
 
         Connection conn = database.ketnoi();
         if (conn == null) {
@@ -241,7 +241,7 @@ public class tbProduct {
                 PreparedStatement smt = conn.prepareStatement(sql);
                 ResultSet rs = smt.executeQuery();
                 while (rs.next()) {
-                    ListProduct sp = new ListProduct();
+                    clsProduct sp = new clsProduct();
                     sp.setId(rs.getInt("ID"));
                     sp.setTensp(rs.getString("TenSP"));
                     sp.setGiaSP(rs.getString("GiaSP"));
@@ -258,7 +258,7 @@ public class tbProduct {
 
     }
 
-    public static int GetProductAdmin(Vector<Product> ds) {
+    public static int GetProductAdmin(Vector<clsCatagory> ds) {
         Connection conn = CSDL.database.ketnoi();
         if (conn == null) {
             return -1;
@@ -268,7 +268,7 @@ public class tbProduct {
             Statement smt = conn.createStatement();
             ResultSet rs = smt.executeQuery(sql);
             while (rs.next()) {
-                Product pro = new Product();
+                clsCatagory pro = new clsCatagory();
                 pro.setId(rs.getInt("id"));
                 pro.setTen(rs.getString("TenSanPham"));
                 pro.setTrangthai(rs.getBoolean("status"));
@@ -300,7 +300,7 @@ public class tbProduct {
 
     }
 
-    public static int GetOneTypeProduct(int id, Product sp) {
+    public static int GetOneTypeProduct(int id, clsCatagory sp) {
         Connection conn = CSDL.database.ketnoi();
 
         String sql = "SELECT * FROM products WHERE id=?";
@@ -322,7 +322,7 @@ public class tbProduct {
         }
     }
 
-    public static int GetOneProduct(int id, ListProduct sp) {
+    public static int GetOneProduct(int id, clsProduct sp) {
         Connection conn = CSDL.database.ketnoi();
 
         String sql = "SELECT * FROM listsanpham WHERE id=?";
@@ -348,7 +348,7 @@ public class tbProduct {
 
     }
 
-    public static int FixSP(int id, ListProduct pro) {
+    public static int FixSP(int id, clsProduct pro) {
         Connection cnn = CSDL.database.ketnoi();
         if (cnn == null) {
             return -1;//lỗi kết nối CSDL

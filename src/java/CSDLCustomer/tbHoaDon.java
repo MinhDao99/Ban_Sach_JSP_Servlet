@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.HoaDon;
+import model.clsHoaDon;
 
 /**
  *
@@ -20,7 +20,7 @@ import model.HoaDon;
  */
 public class tbHoaDon {
 
-    public static int ThemHD(HoaDon hd) {
+    public static int ThemHD(clsHoaDon hd) {
         Connection conn = CSDLCustomer.database.ketnoi();
         if (conn == null) {
             return -1;

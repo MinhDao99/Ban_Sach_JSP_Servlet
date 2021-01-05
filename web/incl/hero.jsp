@@ -4,7 +4,7 @@
     Author     : Minh Dao
 --%>
 
-<%@page import="model.Product"%>
+<%@page import="model.clsCatagory"%>
 <%@page import="java.util.Vector"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
   <section class="hero">
@@ -15,15 +15,15 @@
                                 <ul>
                                     <%
                                        
-                                        Vector<Product> ds = new Vector<Product>();
+                                        Vector<clsCatagory> ds = new Vector<clsCatagory>();
                                         int kq = CSDLCustomer.tbProduct.GetProduct(ds);
                                         if (kq == 0) {
 
 
                                     %>
-                                    <li><a href="#">No product</a></li>
+                                    <li><a href="#">Không có sản phẩm</a></li>
                                         <%                        } else if (kq > 0) {
-                                            for (Product p : ds) {
+                                            for (clsCatagory p : ds) {
                                         %>
                                     <li><a href="index.jsp?module=product&id=<%=p.getId()%>"><%=p.getTen()%></a></li>
 
@@ -40,7 +40,7 @@
                                     <form action="index.jsp?module=timkiem" method="post">
                                        
                                         <input type="text" name="search" placeholder="Tìm kiếm sách của bạn ở đây  -> ">
-                                        <button type="submit" class="site-btn">SEARCH</button>
+                                        <button type="submit" class="site-btn">Tìm kiếm</button>
                                     </form>
                                 </div>
                                 <div class="hero__search__phone">
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="hero__search__phone__text">
                                         <h5>(+84) 0327 614 768</h5>
-                                        <span>support 24/7 time</span>
+                                        <span>Sẵn sàng hỗ trợ 24/7</span>
                                     </div>
                                 </div>
                             </div>

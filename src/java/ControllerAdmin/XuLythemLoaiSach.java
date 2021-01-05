@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Product;
+import model.clsCatagory;
 
 /**
  *
@@ -46,7 +46,7 @@ public class XuLythemLoaiSach extends HttpServlet {
                 tbtrangthai = true;
             }
 
-            Product pro = new Product(0, tenloaisach, tbtrangthai);
+            clsCatagory pro = new clsCatagory(0, tenloaisach, tbtrangthai);
             int ketqua = CSDLAdmin.tbProductAdmin.SetData(pro);
             if (ketqua == -1) {
                 out.println("<h3>Lỗi kết nối CSDL</h3>");
@@ -55,7 +55,7 @@ public class XuLythemLoaiSach extends HttpServlet {
             } else if (ketqua == 0) {
                 out.println("<h3>Không cập nhật dữ liệu</h3>");
             } else {
-                response.sendRedirect("admin.jsp?module=themloaisp");
+                response.sendRedirect("admin.jsp?module=loaisach");
             }
         }
     }

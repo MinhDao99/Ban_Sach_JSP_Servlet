@@ -39,7 +39,7 @@ public class XuLyXoa extends HttpServlet {
             int kq=tbProductAdmin.Delete(id);
             if(kq>0)
             {
-                response.sendRedirect("admin.jsp?module=DSSP");
+                request.getRequestDispatcher("admin.jsp?module=DSSP").forward(request, response);
             }
         }
     }

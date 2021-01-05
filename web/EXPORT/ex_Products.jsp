@@ -5,11 +5,12 @@
 --%>
 
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="model.ListProduct"%>
+<%@page import="model.clsProduct"%>
 <%@page import="CSDLAdmin.tbProductAdmin"%>
 <%@page import="java.util.Vector"%>
-<%@page import="model.Product"%>
+<%@page import="model.clsCatagory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 
 <table>
     <br>
@@ -29,12 +30,12 @@
         response.setContentType("application/vnd.ms-excel");
         response.setHeader("Content-Disposition", "inline;filename=Product.xls");
         response.setCharacterEncoding("utf-8");
-        Vector<ListProduct> ds = new Vector<ListProduct>();
-        ListProduct pro = new ListProduct();
+        Vector<clsProduct> ds = new Vector<clsProduct>();
+//        clsProduct pro = new clsProduct();
         tbProductAdmin.LayDuLieuAdmin(ds);
         int dem = 0;
         DecimalFormat formatter = new DecimalFormat("###,###,###");
-        for (ListProduct p : ds) {
+        for (clsProduct p : ds) {
             String img = "noimage.jpg";
             if (p.getHinhAnh() != null && p.getHinhAnh().equals("") == false) {
                 img = p.getHinhAnh();
@@ -51,10 +52,10 @@
         <td style="width: 500px"><%=p.getMoTa()%></td>
         <td><%=p.getIdproducts()%></td>
         <td><%=p.isTrangthai() ? "Đang bán" : "Không được bán"%></td>
-        </th>
+       
     </tr>
-    <% 
-     
-            }
+    <%
+
+        }
     %>
 </table>

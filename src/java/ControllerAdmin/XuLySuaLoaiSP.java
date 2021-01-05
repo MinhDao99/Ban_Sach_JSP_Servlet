@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Product;
+import model.clsCatagory;
 
 /**
  *
@@ -46,7 +46,7 @@ public class XuLySuaLoaiSP extends HttpServlet {
             } else {
                 tbtt = true;
             }
-            Product p= new Product(id, ten, tbtt);
+            clsCatagory p= new clsCatagory(id, ten, tbtt);
             int kq=tbProductAdmin.FixLoaiSP(id,p);
             if(kq>0)
             {

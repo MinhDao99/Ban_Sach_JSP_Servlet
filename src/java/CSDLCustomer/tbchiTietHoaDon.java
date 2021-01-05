@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.ChiTietHoaDon;
+import model.clsChiTietHoaDon;
 
 /**
  *
@@ -18,7 +18,7 @@ import model.ChiTietHoaDon;
  */
 public class tbchiTietHoaDon {
 
-    public static int ThemCTHD(ChiTietHoaDon cthd) {
+    public static int ThemCTHD(clsChiTietHoaDon cthd) {
         Connection conn = database.ketnoi();
         if (conn == null) {
             return -1;

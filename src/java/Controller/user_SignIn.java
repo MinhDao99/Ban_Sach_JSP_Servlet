@@ -46,13 +46,8 @@ public class user_SignIn extends HttpServlet {
             String pass=request.getParameter("exampleInputPassword");
             tbUser tb= new tbUser();
             int kq= tb.kiemtra(user, pass);
-             if(kq==-1)
-            {
-                out.println("<h3>Connect failed.Please check your internet connection ^-^</h3>");
-            }else if(kq==0){
-                out.println("<h1 style=\"color:yellow;padding-top:20px;\" align=center>Incorrect username or password!. Please retype ^-^</h1>");
-                RequestDispatcher rd= request.getRequestDispatcher("login.jsp");
-                rd.include(request, response);
+             if(kq<=0){
+               response.sendRedirect("Login_home.jsp");
             }else
             {
                 HttpSession ss= request.getSession();

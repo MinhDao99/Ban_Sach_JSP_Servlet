@@ -19,7 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ListProduct;
+import model.clsProduct;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -70,7 +70,7 @@ public class XuLySuaSP extends HttpServlet {
                     HinhAnh = HinhAnhHienTai;
 
                 }
-                ListProduct p = new ListProduct(id, Tensach, GiaSach, HinhAnh, MoTa, id, tbtrangthai);
+                clsProduct p = new clsProduct(id, Tensach, GiaSach, HinhAnh, MoTa, id, tbtrangthai);
 
                 int kq = tbProductAdmin.FixSP(id, p);
 

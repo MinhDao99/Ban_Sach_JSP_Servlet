@@ -45,8 +45,7 @@ public class XuLyDangNhapAdmin extends HttpServlet {
                 out.println("<h3>Connect failed.Please check your internet connection ^-^</h3>");
             } else if (kq == 0) {
                 out.println("<h1 style=\"color:yellow;padding-top:20px;\" align=center>Incorrect username or password!. Please retype ^-^</h1>");
-                RequestDispatcher rd = request.getRequestDispatcher("loginadmin.jsp");
-                rd.include(request, response);
+               request.getRequestDispatcher("Account_Admin_Login.jsp").include(request, response);
             } else {
                 HttpSession ss = request.getSession();
                 ss.setAttribute("useradmin", user);

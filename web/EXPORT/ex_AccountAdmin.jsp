@@ -4,13 +4,11 @@
     Author     : Minh Dao
 --%>
 
-<%@page import="model.TaikhoanAdmin"%>
+<%@page import="model.cls_Account_Admin"%>
 <%@page import="CSDLAdmin.tbUserAdmin"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="model.ListProduct"%>
 <%@page import="CSDLAdmin.tbProductAdmin"%>
 <%@page import="java.util.Vector"%>
-<%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <table>
     <tr>
@@ -20,17 +18,16 @@
         <th>Họ tên</th>
         <th>Tên hiển thị</th>
         <th>Số điện thoại </th>
-
-
-
     </tr>
     <%
         response.setContentType("application/vnd.ms-excel");
         response.setHeader("Content-Disposition", "inline;filename=DuLieu.xls");
-        response.setCharacterEncoding("utf-8");
-        Vector<TaikhoanAdmin> ds = (Vector<TaikhoanAdmin>) session.getAttribute("export");
+        
+//        Vector<cls_Account_Admin> ds = (Vector<cls_Account_Admin>) session.getAttribute("export");
+        Vector<cls_Account_Admin> ds = new Vector<cls_Account_Admin>();
+         tbUserAdmin.GetUserAdmin(ds);
         int dem = 0;
-        for (TaikhoanAdmin p : ds) {
+        for (cls_Account_Admin p : ds) {
             dem++;
     %>
     <tr>
@@ -43,7 +40,7 @@
 
     </tr>
     <%    }
-        session.setAttribute("export", ds);
+
     %>
 </table>
 

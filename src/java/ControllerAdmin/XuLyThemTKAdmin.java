@@ -8,12 +8,13 @@ package ControllerAdmin;
 import CSDLAdmin.tbUserAdmin;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.TaikhoanAdmin;
+import model.cls_Account_Admin;
 
 /**
  *
@@ -36,17 +37,28 @@ public class XuLyThemTKAdmin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         try (PrintWriter out = response.getWriter()) {
+            int flag=1;
             String Email = request.getParameter("email");
             String Pass = request.getParameter("Password");
             String Repass = request.getParameter("nhaplaimatkhau");
             String hoten = request.getParameter("hoten");
             String tenhienthi = request.getParameter("tenhienthi");
             String sdt = request.getParameter("sdt");
+            tbUserAdmin tb = new tbUserAdmin();
+            Vector<cls_Account_Admin> ds = new Vector<>();
+            tb.GetUserAdmin(ds);
+            for (cls_Account_Admin tk : ds) {
+                if (tk.getEmail().equals(Email)) {
+                    out.println("Tài khoản đã tồn tại");
+                    flag=0;
+                    break;
+                }
+            }
+
             if (Repass.equalsIgnoreCase(Pass) == false) {
                 out.println("Không trùng password");
-            } else {
-                tbUserAdmin tb = new tbUserAdmin();
-                TaikhoanAdmin tk = new TaikhoanAdmin(0, Email, Pass, hoten,tenhienthi, sdt);
+            }else if(flag==1) {
+                cls_Account_Admin tk = new cls_Account_Admin(0, Email, Pass, hoten,tenhienthi, sdt);
                 int kq = tb.add(tk);
                 if (kq == -1) {
                     out.println("<h3> lỗi kết nối csdl</h3>");

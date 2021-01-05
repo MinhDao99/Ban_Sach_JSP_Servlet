@@ -14,8 +14,8 @@ import java.sql.Statement;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Taikhoan;
-import model.TaikhoanAdmin;
+import model.cls_Account_Customer;
+import model.cls_Account_Admin;
 
 /**
  *
@@ -45,7 +45,7 @@ public class tbUserAdmin {
         }
     }
 
-    public static int add(TaikhoanAdmin tk) {
+    public static int add(cls_Account_Admin tk) {
         Connection conn = CSDLAdmin.database.ketnoi();
         if (conn == null) {
             return -1;
@@ -74,7 +74,7 @@ public class tbUserAdmin {
 
     }
 
-    public static int GetUserCus(Vector<Taikhoan> ds) {
+    public static int GetUserCus(Vector<cls_Account_Customer> ds) {
         Connection conn = database.ketnoi();
         if (conn == null) {
             return -1;
@@ -84,7 +84,7 @@ public class tbUserAdmin {
             Statement smt = conn.createStatement();
             ResultSet rs = smt.executeQuery(sql);
             while (rs.next()) {
-                Taikhoan tk = new Taikhoan();
+                cls_Account_Customer tk = new cls_Account_Customer();
                 tk.setId(rs.getInt("id"));
                 tk.setEmail(rs.getString("Email"));
                 tk.setPass(rs.getString("Password"));
@@ -100,7 +100,7 @@ public class tbUserAdmin {
 
     }
 
-    public static int GetUserAdmin(Vector<TaikhoanAdmin> ds) {
+    public static int GetUserAdmin(Vector<cls_Account_Admin> ds) {
         Connection conn = database.ketnoi();
         if (conn == null) {
             return -1;
@@ -110,7 +110,7 @@ public class tbUserAdmin {
             Statement smt = conn.createStatement();
             ResultSet rs = smt.executeQuery(sql);
             while (rs.next()) {
-                TaikhoanAdmin tk = new TaikhoanAdmin();
+                cls_Account_Admin tk = new cls_Account_Admin();
                 tk.setId(rs.getInt("id"));
                 tk.setEmail(rs.getString("Email"));
                 tk.setPass(rs.getString("Password"));
@@ -119,11 +119,11 @@ public class tbUserAdmin {
                 tk.setSdt(rs.getString("SoDienThoai"));
                 ds.add(tk);
             }
-            return ds.size();
         } catch (SQLException ex) {
             Logger.getLogger(tbUserAdmin.class.getName()).log(Level.SEVERE, null, ex);
             return -2;
         }
+            return ds.size();
 
     }
 
@@ -163,7 +163,7 @@ public class tbUserAdmin {
 
     }
 
-    public void insertListBooks(Vector<TaikhoanAdmin> ds) {
+    public void insertListBooks(Vector<cls_Account_Admin> ds) {
         try {
             Connection conn = CSDLAdmin.database.ketnoi();
             // Sét tự động commit false, để chủ động điều khiển
@@ -172,7 +172,7 @@ public class tbUserAdmin {
             String sql = "INSERT INTO user(Email, Password, HoTen,TenHienThi,SoDienThoai) VALUES (?, ?, ?,?,?)";
             PreparedStatement smt = conn.prepareStatement(sql);
 
-            for (TaikhoanAdmin p : ds) {
+            for (cls_Account_Admin p : ds) {
                 smt.setString(1, p.getEmail());
                 smt.setString(2, p.getPass());
                 smt.setString(3, p.getHoten());

@@ -11,8 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Taikhoan;
-import model.TaikhoanAdmin;
+import model.cls_Account_Customer;
+import model.cls_Account_Admin;
 
 /**
  *
@@ -42,7 +42,7 @@ public class tbUser {
         }
     }
 
-    public static int add(TaikhoanAdmin tk) {
+    public static int add(cls_Account_Admin tk) {
         Connection conn = database.ketnoi();
         if (conn == null) {
             return -1;

@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-   
+
     <head>
         <meta charset="UTF-8">
         <title>Quản trị admin</title>
@@ -17,7 +17,11 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />    
         <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-        <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+        <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" 
+        <script src="js/jQuery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+        
+
     </head>
     <body class="skin-blue">
         <div class="wrapper">
@@ -41,7 +45,7 @@
                                     <li class="user-header">
                                         <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                                         <p>
-                                            <a href="loginadmin.jsp" class="btn btn-default btn-flat">Sign out</a>
+                                            <a href="Account_Admin_Login.jsp" class="btn btn-default btn-flat">Sign out</a>
                                         </p>
                                     </li>
                                 </ul>
@@ -64,7 +68,7 @@
                         </div>
                     </div>
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <%@include file="incl_admin/menu.jsp" %>
+                    <%@include file="incl_admin/hero.jsp" %>
                 </section>
                 <!-- /.sidebar -->
             </aside>
@@ -77,10 +81,20 @@
                         Quản lý
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Dashboard</li>
+                        <li><a href="admin.jsp"><i class="fa fa-dashboard"></i> Home</a></li>
+
                     </ol>
                 </section>
+                 <div class="box-header">
+                <div class="box-tools">
+                    <div class="input-group">
+                        <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.box-header -->
 
                 <!-- Main content -->
                 <section class="content">
@@ -92,35 +106,35 @@
                         if (module.equalsIgnoreCase("loaisach")) {
 
                     %>
-                    <%@include file="incl_admin/Admin_main.jsp" %>
+                    <%@include file="incl_admin/Catalog.jsp" %>
                     <%    } else if (module.equalsIgnoreCase("themloaisp")) {
                     %>
-                    <%@include file="incl_admin/themloaisanpham.jsp" %>
+                    <%@include file="incl_admin/Catalog_add.jsp" %>
                     <%
                     } else if (module.equalsIgnoreCase("DSSP")) {
                     %>
-                    <%@include file="incl_admin/DSSP.jsp" %>
+                    <%@include file="incl_admin/Product.jsp" %>
                     <%} else if (module.equalsIgnoreCase("themSP")) {
                     %>
-                    <%@include file="incl_admin/themSP.jsp" %>
+                    <%@include file="incl_admin/Product_add.jsp" %>
                     <%} else if (module.equalsIgnoreCase("SuaDulieu")) {
                     %>
-                    <%@include file="incl_admin/SuaDuLieuLoaiSP.jsp" %>
+                    <%@include file="incl_admin/Catalog_Update.jsp" %>
                     <%} else if (module.equalsIgnoreCase("chitiethoadon")) {
                     %>
-                    <%@include file="incl_admin/chitiethoadon.jsp" %>
+                    <%@include file="incl_admin/Bill_Detail.jsp" %>
                     <%} else if (module.equalsIgnoreCase("DSTKKH")) {
                     %>
-                    <%@include file="incl_admin/TKKH.jsp" %>
+                    <%@include file="incl_admin/Account_Customer.jsp" %>
                     <%} else if (module.equalsIgnoreCase("SuaDulieuSP")) {
                     %>
-                    <%@include file="incl_admin/SuaDulieuSP.jsp" %>
+                    <%@include file="incl_admin/Product_Update.jsp" %>
                     <%} else if (module.equalsIgnoreCase("hoaDon")) {
                     %>
-                    <%@include file="incl_admin/hoaDon.jsp" %>
+                    <%@include file="incl_admin/Bill.jsp" %>
                     <%} else if (module.equalsIgnoreCase("DSTKAdmin")) {
                     %>
-                    <%@include file="incl_admin/TKAdmin.jsp" %>
+                    <%@include file="incl_admin/Account_Admin.jsp" %>
                     <%}
                     %>
                 </section><!-- /.Left col -->
@@ -132,7 +146,6 @@
     </div><!-- /.content-wrapper -->
 
 </div><!-- ./wrapper -->
-
 <script src="js/jQuery-2.1.3.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
 <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>    

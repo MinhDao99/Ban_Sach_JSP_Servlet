@@ -19,7 +19,7 @@ public class database {
 
     static String user = "root";
     static String pass = "";
-    static String url="jdbc:mysql://localhost:3306/Book_Store?useUnicode=true&characterEncoding=utf8";
+    static String url="jdbc:mysql://localhost:3308/Book_Store?useUnicode=true&characterEncoding=utf8";
 
     public static Connection ketnoi() {
 

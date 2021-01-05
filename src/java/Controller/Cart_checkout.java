@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.ChiTietHoaDon;
-import model.HoaDon;
-import model.ListProduct;
+import model.clsChiTietHoaDon;
+import model.clsHoaDon;
+import model.clsProduct;
 
 /**
  *
@@ -55,7 +55,7 @@ public class Cart_checkout extends HttpServlet {
                 String Email = request.getParameter("Email");
                 String Note = request.getParameter("Note");
 
-                HoaDon hd = new HoaDon(0, FirstName, LastName, Address, Town, Phone, Email, Note, "", 0);
+                clsHoaDon hd = new clsHoaDon(0, FirstName, LastName, Address, Town, Phone, Email, Note, "", 0);
                 int idhd = CSDLCustomer.tbHoaDon.ThemHD(hd);
                 if (idhd <= 0) {
                     out.println("<h3>LỖI THÊM HÓA ĐƠN</h3>");
@@ -66,14 +66,14 @@ public class Cart_checkout extends HttpServlet {
                 cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
                 for (int idsp : cart.keySet()) {
                     int soluong = cart.get(idsp);
-                    ListProduct sp = new ListProduct();
+                    clsProduct sp = new clsProduct();
                     int kq = CSDLCustomer.tbProduct.GetOneProduct(idsp, sp);
                     if (kq <= 0) {
                         out.println("<h3>KHÔNG TÌM THẤY SẢN PHẨM</h3>");
 
                     } else {
                         String giamua = sp.getGiaSP();
-                        ChiTietHoaDon cthd = new ChiTietHoaDon(0, idhd, idsp, soluong, giamua);
+                        clsChiTietHoaDon cthd = new clsChiTietHoaDon(0, idhd, idsp, soluong, giamua);
                         int kq1 = CSDLCustomer.tbchiTietHoaDon.ThemCTHD(cthd);
                         if (kq1 <= 0) {
                             out.println("<h3>Đặt hàng thất bại</h3>");

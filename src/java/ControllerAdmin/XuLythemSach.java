@@ -18,7 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ListProduct;
+import model.clsProduct;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -53,14 +53,15 @@ public class XuLythemSach extends HttpServlet {
                     String HinhAnh = Tientich.getInput(fileItems, "HinhAnh", Uploads.filePath);
                     String MoTa = Tientich.getInput(fileItems, "MoTa", Uploads.filePath);
                     String NhomSach = Tientich.getInput(fileItems, "Nhom", Uploads.filePath);
-                    String trangthai = Tientich.getInput(fileItems, "trangthai", HinhAnh);
+                    String trangthai = Tientich.getInput(fileItems, "trangthai", Uploads.filePath);
+                    out.print(HinhAnh);
                     boolean tbtrangthai;
                     if (trangthai == null) {
                         tbtrangthai = false;
                     } else {
                         tbtrangthai = true;
                     }
-                    ListProduct pro = new ListProduct(0, Tensach, GiaSach, HinhAnh, MoTa, Integer.parseInt(NhomSach),tbtrangthai);
+                    clsProduct pro = new clsProduct(0, Tensach, GiaSach, HinhAnh, MoTa, Integer.parseInt(NhomSach),tbtrangthai);
                     int ketqua = CSDLAdmin.tbProductAdmin.SetDataProductList(pro);
                     if (ketqua == -1) {
                         out.println("<h3>Lỗi kết nối CSDL</h3>");

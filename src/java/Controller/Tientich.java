@@ -19,8 +19,7 @@ public class Tientich {
     public static String getInput(List fileItems, String inputName, String filePath) throws Exception {
         Iterator i = fileItems.iterator();
         while (i.hasNext()) {
-            String hoten;
-            String dienthoai;
+           
             FileItem fi = (FileItem) i.next();
             String fieldName = fi.getFieldName();
             //lặp các input submit từ form

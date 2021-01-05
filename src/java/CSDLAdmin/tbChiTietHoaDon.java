@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.ChiTietHoaDon;
+import model.clsChiTietHoaDon;
 
 /**
  *
@@ -25,7 +25,7 @@ public class tbChiTietHoaDon {
         if (conn == null) {
             return -1;
         }
-        String sql = "SELECT SUM(soluong*giamua) AS tongtien FROM chitiethoadon WHERE id=?";
+        String sql = "SELECT SUM(soluong*giamua) AS tongtien FROM chitiethoadon WHERE idhd=?";
         try {
             PreparedStatement smt = conn.prepareStatement(sql);
             smt.setInt(1, idhd);
@@ -43,7 +43,30 @@ public class tbChiTietHoaDon {
 
     }
 
-    public static int DanhSachChiTietHD(int mahd, Vector<ChiTietHoaDon> dhcthd) {
+    public static int TongTienHoaDonChiTiet(int idsp) {
+        Connection conn = CSDLAdmin.database.ketnoi();
+        if (conn == null) {
+            return -1;
+        }
+        String sql = "SELECT SUM(soluong*giamua) AS tongtien FROM chitiethoadon WHERE idsp=?";
+        try {
+            PreparedStatement smt = conn.prepareStatement(sql);
+            smt.setInt(1, idsp);
+            ResultSet rs = smt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("tongtien");
+
+            } else {
+                return 0;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(tbChiTietHoaDon.class.getName()).log(Level.SEVERE, null, ex);
+            return -2;
+        }
+
+    }
+
+    public static int DanhSachChiTietHD(int mahd, Vector<clsChiTietHoaDon> dhcthd) {
         Connection conn = CSDLAdmin.database.ketnoi();
         if (conn == null) {
             return -1;
@@ -54,7 +77,7 @@ public class tbChiTietHoaDon {
             smt.setInt(1, mahd);
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {
-                ChiTietHoaDon cthd = new ChiTietHoaDon();
+                clsChiTietHoaDon cthd = new clsChiTietHoaDon();
                 cthd.setId(rs.getInt("id"));
                 cthd.setIdhd(rs.getInt("idhd"));
                 cthd.setidsp(rs.getInt("idsp"));

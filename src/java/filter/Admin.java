@@ -49,7 +49,7 @@ public class Admin implements Filter {
         HttpSession session = req.getSession();
          req.setCharacterEncoding("UTF-8");
         if (session.getAttribute("useradmin") == null) {
-            res.sendRedirect("loginadmin.jsp");
+            res.sendRedirect("Account_Admin_Login.jsp");
             session.setMaxInactiveInterval(1);
         }
 

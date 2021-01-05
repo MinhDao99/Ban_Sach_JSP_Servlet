@@ -13,9 +13,9 @@ import java.sql.Statement;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.ImageSlide;
-import model.ListProduct;
-import model.Product;
+import model.clsImageSlide;
+import model.clsProduct;
+import model.clsCatagory;
 
 /**
  *
@@ -23,7 +23,7 @@ import model.Product;
  */
 public class tbProduct {
 
-    public static int GetProduct(Vector<Product> ds) {
+    public static int GetProduct(Vector<clsCatagory> ds) {
         Connection conn = CSDLCustomer.database.ketnoi();
         if (conn == null) {
             return -1;
@@ -33,7 +33,7 @@ public class tbProduct {
             Statement smt = conn.createStatement();
             ResultSet rs = smt.executeQuery(sql);
             while (rs.next()) {
-                Product pro = new Product();
+                clsCatagory pro = new clsCatagory();
                 pro.setId(rs.getInt("id"));
                 pro.setTen(rs.getString("TenSanPham"));
                 ds.add(pro);
@@ -46,7 +46,7 @@ public class tbProduct {
 
     }
 
-    public static int LayDuLieu(int id, Vector<ListProduct> dssp) {
+    public static int LayDuLieu(int id, Vector<clsProduct> dssp) {
         Connection conn = CSDLCustomer.database.ketnoi();
 
         String sql = "SELECT * FROM listsanpham WHERE idproducts='" + id + "'AND status=1";
@@ -54,7 +54,7 @@ public class tbProduct {
             PreparedStatement smt = conn.prepareStatement(sql);
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {//duyệt từng bản ghi kết quả select
-                ListProduct sp = new ListProduct();
+                clsProduct sp = new clsProduct();
                 sp.setId(rs.getInt("ID"));
                 sp.setTensp(rs.getString("TenSP"));
                 sp.setGiaSP(rs.getString("GiaSP"));
@@ -71,7 +71,7 @@ public class tbProduct {
         return dssp.size();
     }
 
-    public static int GetAllProduct(Vector<ImageSlide> ds) {
+    public static int GetAllProduct(Vector<clsImageSlide> ds) {
         Connection conn = CSDLCustomer.database.ketnoi();
         if (conn == null) {
             return -1;
@@ -81,7 +81,7 @@ public class tbProduct {
             Statement smt = conn.createStatement();
             ResultSet rs = smt.executeQuery(sql);
             while (rs.next()) {
-                ImageSlide pro = new ImageSlide();
+                clsImageSlide pro = new clsImageSlide();
                 pro.setId(rs.getInt("id"));
                 pro.setHinhAnh(rs.getString("HinhAnh"));
                 ds.add(pro);
@@ -94,7 +94,7 @@ public class tbProduct {
 
     }
 
-    public static int GetDetail(int id, Vector<ListProduct> dssp) {
+    public static int GetDetail(int id, Vector<clsProduct> dssp) {
         Connection conn = CSDLCustomer.database.ketnoi();
 
         String sql = "SELECT * FROM listsanpham WHERE ID='" + id + "'";
@@ -102,7 +102,8 @@ public class tbProduct {
             PreparedStatement smt = conn.prepareStatement(sql);
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {//duyệt từng bản ghi kết quả select
-                ListProduct sp = new ListProduct();
+                clsProduct sp = new clsProduct();
+                sp.setId(rs.getInt("id"));
                 sp.setTensp(rs.getString("TenSP"));
                 sp.setGiaSP(rs.getString("GiaSP"));
                 sp.setHinhAnh(rs.getString("HinhAnh"));
@@ -118,7 +119,7 @@ public class tbProduct {
         return dssp.size();
     }
 
-    public static int Search(String name, Vector<ListProduct> ds) {
+    public static int Search(String name, Vector<clsProduct> ds) {
 
         Connection conn = database.ketnoi();
         if (conn == null) {
@@ -130,7 +131,7 @@ public class tbProduct {
                 PreparedStatement smt = conn.prepareStatement(sql);
                 ResultSet rs = smt.executeQuery();
                 while (rs.next()) {
-                    ListProduct sp = new ListProduct();
+                    clsProduct sp = new clsProduct();
                     sp.setId(rs.getInt("ID"));
                     sp.setTensp(rs.getString("TenSP"));
                     sp.setGiaSP(rs.getString("GiaSP"));
@@ -147,7 +148,7 @@ public class tbProduct {
 
     }
 
-    public static int GetOneProduct(int id, ListProduct sp) {
+    public static int GetOneProduct(int id, clsProduct sp) {
         Connection conn = database.ketnoi();
 
         String sql = "SELECT * FROM listsanpham WHERE id=?";
@@ -173,7 +174,7 @@ public class tbProduct {
 
     }
 
-    public static int LayDuLieuACus(Vector<ListProduct> dssp, int a, int b) {
+    public static int LayDuLieuACus(Vector<clsProduct> dssp, int a, int b) {
         Connection conn = database.ketnoi();
 
         String sql = "SELECT * FROM listsanpham WHERE status=1 LIMIT ?,?";
@@ -184,7 +185,33 @@ public class tbProduct {
 
             ResultSet rs = smt.executeQuery();
             while (rs.next()) {//duyệt từng bản ghi kết quả select
-                ListProduct sp = new ListProduct();
+                clsProduct sp = new clsProduct();
+                sp.setId(rs.getInt("ID"));
+                sp.setTensp(rs.getString("TenSP"));
+                sp.setGiaSP(rs.getString("GiaSP"));
+                sp.setHinhAnh(rs.getString("HinhAnh"));
+                sp.setMoTa(rs.getString("MoTa"));
+                sp.setIdproducts(rs.getInt("idproducts"));
+                sp.setTrangthai(rs.getBoolean("status"));
+                dssp.add(sp);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(tbProduct.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return dssp.size();
+    }
+
+    public static int LayDuLieuACus(Vector<clsProduct> dssp) {
+        Connection conn = database.ketnoi();
+        String sql = "SELECT * FROM listsanpham WHERE status=1";
+        try {
+            PreparedStatement smt = conn.prepareStatement(sql);
+
+            ResultSet rs = smt.executeQuery();
+            while (rs.next()) {//duyệt từng bản ghi kết quả select
+                clsProduct sp = new clsProduct();
                 sp.setId(rs.getInt("ID"));
                 sp.setTensp(rs.getString("TenSP"));
                 sp.setGiaSP(rs.getString("GiaSP"));
@@ -204,7 +231,7 @@ public class tbProduct {
 
     public int getCount() {
         Connection conn = CSDLCustomer.database.ketnoi();
-        Vector<ListProduct> list = new Vector();
+        Vector<clsProduct> list = new Vector();
         String sql = "SELECT count(ID) FROM listsanpham";
         int count = 0;
         try {
@@ -219,4 +246,56 @@ public class tbProduct {
         return count;
     }
 
+    public int totalpage() {
+        Connection conn = CSDLCustomer.database.ketnoi();
+        Vector<clsProduct> list = new Vector();
+        int total = 0;
+        String sql = "SELECT count(ID) FROM listsanpham";
+        try {
+            PreparedStatement smt = conn.prepareStatement(sql);
+            ResultSet rs = smt.executeQuery();
+            while (rs.next()) {
+                int totalA = rs.getInt(1);
+                total = totalA / 8;
+                if (total % 8 != 0) {
+                    total++;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(tbProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
+    }
+
+    public Vector<clsProduct> paging(int a) {
+        Connection conn = database.ketnoi();
+
+        String sql = "SELECT * FROM listsanpham LIMIT 8 OFFSET ?";
+        try {
+            Vector<clsProduct> dssp = new Vector<>();
+            PreparedStatement smt = conn.prepareStatement(sql);
+            smt.setInt(1, a * 8 - 8);
+            ResultSet rs = smt.executeQuery();
+            while (rs.next()) {//duyệt từng bản ghi kết quả select
+                clsProduct sp = new clsProduct();
+                sp.setId(rs.getInt("ID"));
+                sp.setTensp(rs.getString("TenSP"));
+                sp.setGiaSP(rs.getString("GiaSP"));
+                sp.setHinhAnh(rs.getString("HinhAnh"));
+                sp.setMoTa(rs.getString("MoTa"));
+                sp.setIdproducts(rs.getInt("idproducts"));
+                sp.setTrangthai(rs.getBoolean("status"));
+                dssp.add(sp);
+            }
+            return dssp;
+        } catch (SQLException ex) {
+            Logger.getLogger(tbProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        tbProduct tb = new tbProduct();
+        System.out.println(tb.totalpage());
+    }
 }

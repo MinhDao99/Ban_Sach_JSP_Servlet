@@ -7,7 +7,7 @@
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="CSDLAdmin.tbProductAdmin"%>
 <%@page import="java.util.Vector"%>
-<%@page import="model.Product"%>
+<%@page import="model.clsCatagory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <table class="table table-hover">
     <tr>
@@ -21,11 +21,10 @@
         response.setContentType("application/vnd.ms-excel");
         response.setHeader("Content-Disposition", "inline;filename=TheLoai.xls");
         response.setCharacterEncoding("utf-8");
-        Vector<Product> ds = new Vector<Product>();
-        Product pro = new Product();
+        Vector<clsCatagory> ds = new Vector<clsCatagory>();
         tbProductAdmin.GetProductAdmin(ds);
         int dem = 0;
-        for (Product p : ds) {
+        for (clsCatagory p : ds) {
             dem++;
 
 
