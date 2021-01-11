@@ -1,0 +1,21 @@
+SMAP
+product_005fhome_jsp.java
+JSP
+*S JSP
+*F
++ 0 product_home.jsp
+incl/product_home.jsp
+*L
+5,15:48
+27,3:71
+29,3:74
+32,18:78
+49,4:96
+53:100,7
+54,3:107,3
+57,4:116
+61,4:121
+64:125
+65:126,3
+66,8:129
+*E
